@@ -153,7 +153,7 @@
 
     ,
         "url" : "\/posts\/hugo\/",
-        "wordCount" : "151",
+        "wordCount" : "241",
         "genre" : [ ],
         "keywords" : [ ]
     }
@@ -288,6 +288,31 @@
       </div><h1 id="hugoなどを使ってブログサイトを作る">Hugoなどを使ってブログサイトを作る</h1>
 <p>Hugo・GitHub・netlifyの３つを軸にしてブログサイトを作ってみる。</p>
 <p>失敗も相当しているので改めて見返すことも含めてなるべく丁寧に書いておく。</p>
+<p><strong>も　く　じ</strong></p>
+<ul>
+<li><a href="#hugo%E3%81%AA%E3%81%A9%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%83%96%E3%83%AD%E3%82%B0%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%82%8B">Hugoなどを使ってブログサイトを作る</a></li>
+<li><a href="#%E5%90%84%E9%A0%85%E7%9B%AE%E3%81%AE%E8%A3%9C%E8%B6%B3">各項目の補足</a>
+<ul>
+<li><a href="#hugo">Hugo</a></li>
+<li><a href="#%E9%9D%99%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88">静的サイト</a></li>
+<li><a href="#%E5%8B%95%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88">動的サイト</a></li>
+<li><a href="#github">GitHub</a></li>
+<li><a href="#netlify">netlify</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86">ブログを作ろう</a>
+<ul>
+<li><a href="#hugo%E3%82%92%E5%A7%8B%E3%82%81%E3%82%88%E3%81%86">①hugoを始めよう</a></li>
+<li><a href="#github%E3%81%A8netlify%E3%82%82%E7%99%BB%E9%8C%B2%E3%81%97%E3%82%88%E3%81%86">②GitHubとNetlifyも登録しよう</a></li>
+<li><a href="#hugo%E3%81%A7%E3%81%AE%E6%B5%81%E3%82%8C">③hugoでの流れ</a></li>
+<li><a href="#-1%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E4%BD%9C%E6%88%90">③-1フォルダ作成</a></li>
+<li><a href="#-2%E3%83%86%E3%83%BC%E3%83%9E%E3%82%92%E6%B1%BA%E3%82%81%E3%82%88%E3%81%86">③-2テーマを決めよう</a></li>
+<li><a href="#-3-github%E3%81%A8%E9%80%A3%E6%90%BA%E3%81%97%E3%82%88%E3%81%86">③-3 GitHubと連携しよう</a></li>
+<li><a href="#netrify%E3%81%A8%E9%80%A3%E6%90%BA%E3%81%97%E3%81%A6%E5%85%AC%E9%96%8B%E3%81%97%E3%82%88%E3%81%86">④Netrifyと連携して公開しよう!</a></li>
+<li><a href="#%E6%89%8B%E9%A0%86%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81">手順のまとめ</a></li>
+</ul>
+</li>
+</ul>
 <h1 id="各項目の補足">各項目の補足</h1>
 <h2 id="hugo">Hugo</h2>
 <blockquote>
@@ -344,7 +369,7 @@
 <h2 id="-2テーマを決めよう">③-2テーマを決めよう</h2>
 <p>実際に画面に移すためのページを決めないと真っ白な画面が出てきちゃう…</p>
 <p>なので、ここではページレイアウトつまりテーマを決めてしまう。</p>
-<p>一番手っ取り早いのは、<code>hugo themes</code>とかで検索するとテーマがたくさん補完されたページがヒットするぞ。</p>
+<p>一番手っ取り早いのは、<code>hugo themes</code>とかで検索するとテーマがたくさん補完されたページがヒットする。</p>
 <p>実際のページはこれ:https://themes.gohugo.io/</p>
 <p>☆リンク先のページでは右側のTagsに用途毎でタグ付けされているので、今回なら2番めのBlogから選べばいい。</p>
 <p>あとはそのページにテーマの導入方法が描かれてるのでそれを実行すればいいので、実際にやった方法を載せる</p>
@@ -364,7 +389,8 @@
 <strong>※使いたいテーマによっては削除しないこともあります</strong></p>
 </blockquote>
 <h2 id="-3-githubと連携しよう">③-3 GitHubと連携しよう</h2>
-<p>ちゃんと連携出来るかのチェックも兼ねてここからGitHubの連携を始めよう</p>
+<p>ちゃんと連携出来るかのチェックも兼ねてここからGitHubの連携を始めよう
+<em><strong>ここでは前提としてhugoの全フォルダではなく、hugoにて生成するpublicフォルダだけ連携させる</strong></em></p>
 <blockquote>
 <p>【補足】GitHubの準備<br>
 GitHubのマイページの左上にある<code>New</code>をクリック<br>
@@ -374,12 +400,23 @@ Create a new repositoryのページでRepository name(hugoと今回連携させ�
 </blockquote>
 <p>ここからターミナルでコマンドを入力していこう</p>
 <blockquote>
-<p>git init  ここでgit用のレポジトリ(フォルダ)を作ってGitHubとつなげる下準備をする<br>
-※これは最初しか行わないので注意!　　</p>
+<p><strong>hugo</strong><br>
+このコマンドにてpublicフォルダが生成される。このフォルダをgithubに連携させるのが今回の最初の目標</p>
 </blockquote>
 <blockquote>
-<p>git add .  これで更新されたデータを追加させる<br>
-☆☆このコマンドは記事を更新する時毎回必要!!　　</p>
+<p><strong>git init  ここでgit用のレポジトリ(フォルダ)を作ってGitHubとつなげる下準備をする</strong><br>
+<strong>※これは最初しか行わないので注意!</strong>　　</p>
+</blockquote>
+<blockquote>
+<p><strong>git add public  これで更新されたデータを追加させる</strong><br>
+<strong>☆☆このコマンドは記事を更新する時毎回必要!!</strong>　<br>
+<em><strong>!git addの注意!</strong></em><br>
+<strong>git add . というコマンドでhugoの全データを追加できるが③-3の前提条件の通りpublicフォルダだけを追加する!!</strong>
+　</p>
+</blockquote>
+<blockquote>
+<p><strong>git branch -M main</strong><br>
+ブランチ(変更したデータの履歴をたどっていく枝みたいなモノ)を作る。</p>
 </blockquote>
 <blockquote>
 <p>git remote add origin <a href="https://github.com/">https://github.com/</a>ユーザー名/GitHubのファイル名.git<br>
@@ -392,9 +429,9 @@ GitHubではファイル名と一緒にコメントも付けられる。<br>
 またファイルの変更や追加とかできるコマンドとなる。<br>
 コメントの中はその都度<code>first commit</code>とか入れてみよう</p>
 </blockquote>
-<h3 id="補足git-commit">補足　git commit</h3>
+<p>補足　git commit</p>
 <blockquote>
-<p>追加・変更したファイルをGitに登録するためのコマンド</p>
+<p>追加・変更したファイルをGitに登録するためのコマンド　ブログ更新したらその都度コメントを変えながらコミットする!</p>
 </blockquote>
 <blockquote>
 <p>git push origin master (またはgit push -u origin main)<br>
@@ -414,6 +451,13 @@ GitHubではファイル名と一緒にコメントも付けられる。<br>
 </blockquote>
 <blockquote>
 <p>そしたらサイト用のアドレスが設定されているのでクリックして表示されたらクリア!!</p>
+</blockquote>
+<h2 id="手順のまとめ">手順のまとめ</h2>
+<blockquote>
+<p>最初:hugo → git init → git add public → git commit -m &lsquo;コメント&rsquo; → git branch -M main → git remote add origin <a href="https://github.com/">https://github.com/</a>ユーザー名/GitHubのファイル名.git → git push origin master (またはgit push -u origin main)</p>
+</blockquote>
+<blockquote>
+<p>2回目以降(記事更新時):hugo → git add public → git commit -m &lsquo;コメント&rsquo; → git push origin master (またはgit push -u origin main)</p>
 </blockquote>
 </div>
     <div class="post-footer">
