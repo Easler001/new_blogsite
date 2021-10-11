@@ -82,7 +82,7 @@
   
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Node"/>
-<meta name="twitter:description" content="Node.js 導入まとめ Node."/>
+<meta name="twitter:description" content="Node.js 導入と運用まとめ Node."/>
 
 
 
@@ -103,7 +103,7 @@
         "alternativeHeadline": "",
         "description": "
       
-        Node.js 導入まとめ Node.
+        Node.js 導入と運用まとめ Node.
 
 
       
@@ -153,7 +153,7 @@
 
     ,
         "url" : "\/posts\/node.js\/",
-        "wordCount" : "97",
+        "wordCount" : "264",
         "genre" : [ ],
         "keywords" : [ ]
     }
@@ -285,19 +285,19 @@
       <div class="post-title">
         <h1>Node</h1>
         
-      </div><h1 id="nodejs-導入まとめ">Node.js 導入まとめ</h1>
+      </div><h1 id="nodejs-導入と運用まとめ">Node.js 導入と運用まとめ</h1>
 <h2 id="nodejsとは">Node.jsとは</h2>
-<pre><code>   サーバーサイド(ユーザーの視覚的ではない部分(裏側)の部分の処理をしているプログラミング)で動くJavaScript&lt;br&gt;
-</code></pre>
+<blockquote>
+<p>サーバーサイド(ユーザーの視覚的ではない部分(裏側)の部分の処理をしているプログラミング)で動くJavaScript</p>
+</blockquote>
 <h2 id="導入環境構築">導入(環境構築)</h2>
-<pre><code>Node.jsはHTML、CSS、 JSと違って環境構築しないといけない。(デフォルトで作成されているわけではないのでその環境を作らないといけない。)
-
-使用ツール…Nodebrew(Node.jsをインストールするだけでなく、バージョン管理することもできるツール)
-※Homebrewを使用するという方法もあるが、Node.jsを使うだけなら使わなくていい!
-
-①公式HPにアクセス→GitHubのページがあるのでジャンプ。(同時進行でターミナル起動)
-
-GitHubページをスクロールすると、
+<blockquote>
+<p>Node.jsはHTML、CSS、 JSと違って環境構築しないといけない。(デフォルトで作成されているわけではないのでその環境を作らないといけない。)<br>
+使用ツール…Nodebrew(Node.jsをインストールするだけでなく、バージョン管理することもできるツール)<br>
+※Homebrewを使用するという方法もあるが、Node.jsを使うだけなら使わなくていい!</p>
+</blockquote>
+<p>①公式HPにアクセス→GitHubのページがあるのでジャンプ。(同時進行でターミナル起動)</p>
+<pre><code>GitHubページをスクロールすると、
     README.md
     nodebrew
     
@@ -306,31 +306,32 @@ GitHubページをスクロールすると、
     Install with curl.
     
     $ curl -L git.io/nodebrew | perl - setup←これをコピーする!!
-    Or, download and setup.
-
-②　①でコピーしたものを(curl -L git.io/nodebrew | perl - setup)ターミナルにペーストする!
-☆ポイント☆curlというコマンドは、httpリクエストを通してサーバーにアクセスしてダウンロード/送るコマンド
-入力すると、データがぞろぞろ表示されていく。すると…
-    ========================================
+    Or, download and setup.  
+</code></pre>
+<p>②　①でコピーしたものを(curl -L git.io/nodebrew | perl - setup)ターミナルにペーストする!</p>
+<blockquote>
+<p>☆ポイント☆curlというコマンドは、httpリクエストを通してサーバーにアクセスしてダウンロード/送るコマンド入力すると、データがぞろぞろ表示されていく。すると…</p>
+</blockquote>
+<pre><code>    ========================================
     Export a path to nodebrew:
      
     export PATH=$HOME/.nodebrew/current/bin:$PATH
     ========================================
-    と言う感じに出てくる!
-   
-
-そうしたら、上で出てきたexport PATH=$HOME/.nodebrew/current/bin:$PATHを
-   そのままターミナル上に貼り付ける
-☆ポイント☆ここでコピペしたモノは、Nodebrewのパスを通している。
-
-③Nodebrewを使ってNode.jsをインストールする
-
-上述のGitHubのページからnodebrew install-binaryを見つけてインストール
-   コマンドは2パターン
-   nodebrew install-binary latest…一番新しいバージョン
-   nodebrew install-binary stable…安定版の中で一番新しいバージョン(初心者はこっち推奨)
-
-Node.jsのバージョン確認と指定
+    と言う感じに出てくる!  
+</code></pre>
+<blockquote>
+<p><strong>そうしたら、上で出てきたexport PATH=$HOME/.nodebrew/current/bin:$PATHを</strong>
+<strong>そのままターミナル上に貼り付ける</strong><br>
+<strong>☆ポイント☆ここでコピペしたモノは、Nodebrewのパスを通している。</strong></p>
+</blockquote>
+<p>③Nodebrewを使ってNode.jsをインストールする</p>
+<p>上述のGitHubのページからnodebrew install-binaryを見つけてインストール</p>
+<blockquote>
+<p>コマンドは2パターン<br>
+<strong>nodebrew install-binary latest…一番新しいバージョン</strong><br>
+<strong>nodebrew install-binary stable…安定版の中で一番新しいバージョン(初心者はこっち推奨)</strong></p>
+</blockquote>
+<pre><code>Node.jsのバージョン確認と指定
 
 nodebrew lsで使用バージョンが確認できる
     ☆ポイント current:noneと表示された場合は、使用するNode.JSのバージョンが指定されていない状態を指す☆
@@ -349,8 +350,112 @@ nodebrewのパスを自動で通すようにする
 4.:wqと入力、enterでターミナルに戻れる
 5.ターミナル⇨環境設定→コマンドを実行にチェックマーク
 6.ターミナルを再起動して node -v やnodebrew -vでバージョンを確認したり 
-    nodebrew lsできるか確認
+    nodebrew lsできるか確認  
 </code></pre>
+<hr>
+<h1 id="nodejsの運用">Node.jsの運用</h1>
+<h2 id="nodeの準備">Nodeの準備</h2>
+<p>今回の運用ではDocker Hubを使用する。</p>
+<blockquote>
+<p>_<em>ターミナルでディレクトリを用意する</em><br>
+<strong>mkdir -p ~/workspace/nodejs-study</strong><br>
+<strong>cd ~/workspace/nodejs-study</strong></p>
+</blockquote>
+<blockquote>
+<p><em><strong>ターミナルからvsコードをダイレクトで起動させる</strong></em><br>
+<em><strong>code .</strong></em><br>
+☆方法(事前設定必須)☆<br>
+1.vsコードでコマンドパレットを開く。(Command + Shift + P)<br>
+2.Shellと打って検索<br>
+3.インストール<br>
+4.インストール完了のメッセージが出たらok!</p>
+</blockquote>
+<p><strong>Docker Hubで環境を構築する</strong><br>
+<a href="https://hub.docker.com/">https://hub.docker.com/</a><br>
+今回についてはアカウント登録不要なので以下のチャートにそって進行</p>
+<blockquote>
+<p>1.検索フィールドが丈夫にあるので&rsquo;node&rsquo;と入力<br>
+2.「node」というDockerイメージが表示される<br>
+3.先ほど用意したcd ~/workspace/nodejs-studyの中にDockerfileというファイルを作成する。<br>
+※Dockerfileには.html等の拡張子はない!<br>
+4.作ったDockerfileに以下を入力orコピペ</p>
+</blockquote>
+<p>FROM &ndash;platform=linux/x86_64 node:14.15.4</p>
+<p>RUN apt-get update<br>
+RUN apt-get install -y locales<br>
+RUN locale-gen ja_JP.UTF-8<br>
+RUN localedef -f UTF-8 -i ja_JP ja_JP<br>
+ENV LANG ja_JP.UTF-8<br>
+ENV TZ Asia/Tokyo<br>
+WORKDIR /nodejs-study</p>
+<p>Dockerコンテナを起動するために便利なymlファイルを作成する。</p>
+<blockquote>
+<p>~/workspace/nodejs-studyの中にdocker-compose.yml という名前のファイルを作成<br>
+以下ファイル内に入力(インデント((字下げ)も厳密に見られるので入力時に注意))</p>
+</blockquote>
+<p>version: &lsquo;3&rsquo;</p>
+<blockquote>
+<p>services:
+app:<br>
+build: .<br>
+tty: true<br>
+volumes:<br>
+- .:/nodejs-study</p>
+</blockquote>
+<h1 id="dockerコンテナの起動">Dockerコンテナの起動</h1>
+<p>nodeイメージからDockerコンテナを構築して起動する。</p>
+<blockquote>
+<p>cd ~/workspace/nodejs-study  フォルダに移動<br>
+docker-compose up -d  起動</p>
+</blockquote>
+<p>docker-compose exec app bash(起動してコンソールにアクセスする)<br>
+node &ndash;version(使用しているnodeのバージョンを確認する)</p>
+<p>終了</p>
+<blockquote>
+<p>exit  コンソールから抜ける<br>
+docker-compose down</p>
+</blockquote>
+<hr>
+<h1 id="http接続">http接続</h1>
+<blockquote>
+<p>mkdir -p ~/workspace/nodejs-http<br>
+cd ~/workspace/nodejs-http<br>
+code .<br>
+Nodeの準備の時と似た形。<br>
+フォルダを作成してvsコード上で確認する。</p>
+</blockquote>
+<p>Dockerfileの用意 方法は上記同様のため省略。以下を入力orコピペ<br>
+FROM &ndash;platform=linux/x86_64 node:14.15.4</p>
+<blockquote>
+<p>RUN apt-get update<br>
+RUN apt-get install -y locales tmux vim<br>
+RUN locale-gen ja_JP.UTF-8<br>
+RUN localedef -f UTF-8 -i ja_JP ja_JP<br>
+ENV LANG ja_JP.UTF-8<br>
+ENV TZ Asia/Tokyo<br>
+WORKDIR /app</p>
+</blockquote>
+<p>ymlファイルの作成<br>
+docker-compose.ymlという名前でファイル作成 以下コピペ</p>
+<blockquote>
+<p>version: &lsquo;3&rsquo;<br>
+services:<br>
+app:<br>
+build: .
+tty: true<br>
+ports:
+- 8000:8000<br>
+volumes:<br>
+- .:/app</p>
+</blockquote>
+<h1 id="コンテナ起動">コンテナ起動</h1>
+<blockquote>
+<p>cd ~/workspace/nodejs-http<br>
+docker-compose up -d
+ここまでは上とほぼ同じ<br>
+入力ができる状態の確認ができたら以下を入力<br>
+docker-compose exec app bash</p>
+</blockquote>
 </div>
     <div class="post-footer">
       <div class="info">
