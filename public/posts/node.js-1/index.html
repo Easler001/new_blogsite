@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+><head>
+  <title>
+    Easler
+      |
+      集計処理を行うプログラム
+
+
+    
+
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.86.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta
+    name="description"
+    content="
+      Call me Easler
+
+
+    "
+  />
+  
+  
+  
+  <link
+    rel="stylesheet"
+    href="/css/main.min.c580433fbb275c2c40c362871f45832502b837fa4f6b86f80089b4b4baf9df86.css"
+    integrity="sha256-xYBDP7snXCxAw2KHH0WDJQK4N/pPa4b4AIm0tLr534Y="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.8e4c8f0a940b1596fb4c64d28a00a5ceed671fc303cb65178b4947417da9c674.css"
+    integrity="sha256-jkyPCpQLFZb7TGTSigClzu1nH8MDy2UXi0lHQX2pxnQ="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous"
+  />
+  
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+  <link rel="canonical" href="/posts/node.js-1/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js"
+    integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js"
+      integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus="
+      crossorigin="anonymous"
+    ></script>
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="集計処理を行うプログラム"/>
+<meta name="twitter:description" content="集計処理を行うプログラム 集計は文字通り数を集めて合算すること"/>
+
+
+
+  
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "posts",
+        "name": "集計処理を行うプログラム",
+        "headline": "集計処理を行うプログラム",
+        "alternativeHeadline": "",
+        "description": "
+      
+        集計処理を行うプログラム 集計は文字通り数を集めて合算すること
+
+
+      
+
+
+    ",
+        "inLanguage": "ja-ja",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "\/posts\/node.js-1\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Easler"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Easler"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Easler"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Easler"
+        },
+        "copyrightYear" : "2021",
+        "dateCreated": "2021-10-23T12:04:55.00Z",
+        "datePublished": "2021-10-23T12:04:55.00Z",
+        "dateModified": "2021-10-23T12:04:55.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Easler",
+            "url": "",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+      ]
+
+    ,
+        "url" : "\/posts\/node.js-1\/",
+        "wordCount" : "744",
+        "genre" : [ ],
+        "keywords" : [ ]
+    }
+  </script>
+
+
+
+</head>
+<body>
+    <header><div
+  class="page-top 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </a>
+  <nav>
+    <ul class="nav__list" id="navMenu">
+      <div class="nav__links">
+        
+        
+          
+          <li>
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/posts/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/about/"
+              
+              title=""
+              >About</a
+            >
+          </li>
+
+        
+        
+      </div>
+      <li>
+        
+          <a class="theme-switch" title="Switch Theme">
+            <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+          </a>
+
+        
+      </li>
+    </ul>
+  </nav>
+</div>
+</header>
+    <div class="wrapper">
+      <aside><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="logo-title">
+      <div class="title">
+        <img src="/images/p.jpg" alt="profile picture" />
+        <h3 title=""><a href="/">30Week</a></h3>
+        <div class="description">
+          <p>Call me Easler</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+      
+    </ul>
+  </div><footer class="footer footer--sidebar">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          2020-2021
+
+        
+      </li>
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main>
+        <div class="autopagerize_page_element">
+          <div class="content">
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    <div class="post-content">
+      
+      <div class="post-title">
+        <h1>集計処理を行うプログラム</h1>
+        
+      </div><h2 id="集計処理を行うプログラム">集計処理を行うプログラム</h2>
+<p>集計は文字通り数を集めて合算すること<br>
+ここではNodeにて合算するメカニズムについてまとめる</p>
+<p>一例として各都道府県の人口増減率について処理をしてみる</p>
+<h3 id="まずは導入から">まずは導入から</h3>
+<p>実装するためのディレクトリをGithubからクローンする<br>
+<a href="https://github.com/nnn-training/adding-up">https://github.com/nnn-training/adding-up</a><br>
+※前提としてworkspaceというディレクトリを作成している<br>
+<code>cd ~/workspace/</code><br>
+<code>git clone git@github.com:あなたのユーザー名/adding-up.git</code><br>
+<code>cd adding-up</code><br>
+<code>git checkout main-2021</code><br>
+<code>code .</code><br>
+<code>docker-compose up -d</code><br>
+<code>docker-compose exec app bash</code><br>
+上記の<code>code .</code> でVS codeが起動する。<br>
+ファイルの中には</p>
+<blockquote>
+<p>app.js (実装するJSのファイル)<br>
+popu-pref.csv 人口推移についてのデータが入ってる<br>
+Dockerfile と docker-compose.yml  これはこれまで同様　詳細は<!-- raw HTML omitted --><a href="https://nostalgic-noyce-f50430.netlify.app/posts/node.js/">https://nostalgic-noyce-f50430.netlify.app/posts/node.js/</a><!-- raw HTML omitted --></p>
+</blockquote>
+<h4 id="コードの補足">コードの補足</h4>
+<p>git checkout等について　詳細は本記事全体構成完了後に追記。</p>
+<h2 id="今回するコト">今回するコト</h2>
+<p>データ元になるCSVファイルから2010年から2015年にかけての人口増減率についてランキング作成をやってみる<br>
+始めるにあたって、いくつかのプロセスを順序立ててやっていく。</p>
+<blockquote>
+<p>①ファイルからのデータ読み込み<br>
+②2010年と2015年でデータを分ける<br>
+③変化率を計算させる<br>
+④変化率で並べてそれを実際に表示させる。</p>
+</blockquote>
+<p>イメージ的には</p>
+<blockquote>
+<ol>
+<li>◯◯県　?%</li>
+<li>◯◯県　?% …<br>
+となればいいが結果はどうなるかな…?</li>
+</ol>
+</blockquote>
+<p>まずはapp.jsのファイルに記述させる</p>
+<pre><code class="language-java:'use" data-lang="java:'use">const fs = require('fs');
+const readline = require('readline');
+const rs = fs.createReadStream('./popu-pref.csv');
+const rl = readline.createInterface({ input: rs, output: {} });
+rl.on('line', lineString =&gt; {
+  console.log(lineString);
+});
+</code></pre><p>この中で、</p>
+<pre><code class="language-java:" data-lang="java:">const rs = fs.createReadStream('./popu-pref.csv');
+const rl = readline.createInterface({ input: rs, output: {} });  
+</code></pre><p>この部分は実際に書かれてるようにcsvファイルからデータを読み込ませている<br>
+<strong>ファイルの読込を行うStreamを生成する</strong></p>
+<h4 id="stream">Stream</h4>
+<blockquote>
+<p>Node.jsで入出力が起きる処理のほとんどがこれ。<br>
+文字通り「流れ」を示している。ここでは、csvファイルのイベントに反応して情報を返す形。<br>
+このように予めイベントが発生した時に実行する関数を設定して起きたイベントに応じて処理する一連の流れを  <strong>イベント駆動型プログラミングという。</strong></p>
+</blockquote>
+<p><strong>とりあえずここでコンソールに出力してみよう</strong></p>
+<pre><code class="language-java:" data-lang="java:">node app.js  
+</code></pre><pre><code class="language-java:" data-lang="java:">集計年,都道府県名,10〜14歳の人口,15〜19歳の人口  
+2010,北海道,237155,258530  
+2010,青森県,66023,67308  
+2010,岩手県,62587,64637  
+2010,宮城県,109287,120010  
+2010,秋田県,47425,47154  
+2010,山形県,54968,54898  
+2010,福島県,101697,101390  
+2010,茨城県,143298,144480  
+2010,栃木県,94321,93535  
+2010,群馬県,99068,96344  
+2010,埼玉県,334605,356249  
+2010,千葉県,276043,283408  
+2010,東京都,492799,546573  
+（省略）  
+</code></pre><p>①ファイルデータの読み込み　クリア<br>
+続いてデータの選択(抽出)を行う<br>
+app.jsを以下の通り書き換えをしてみる</p>
+<pre><code class="language-java:" data-lang="java:"> const rl = readline.createInterface({ input: rs, output: {} });
+ rl.on('line', lineString =&gt; {
+-  console.log(lineString);
++  const columns = lineString.split(',');
++  const year = parseInt(columns[0]);
++  const prefecture = columns[1];
++  const popu = parseInt(columns[3]);
++  if (year === 2010 || year === 2015) {
++    console.log(year);
++    console.log(prefecture);
++    console.log(popu);
++  }
+ });  
+</code></pre><p>(＋が追加、−が削除)</p>
+<p>ここで再度</p>
+<pre><code class="language-java:" data-lang="java:">node app.js  
+</code></pre><p>コンソールを確認</p>
+<pre><code class="language-java:" data-lang="java:">2010  
+北海道  
+258530  
+2010  
+青森県  
+67308  
+2010  
+岩手県  
+64637  
+2010  
+宮城県  
+120010  
+2010  
+秋田県  
+47154  
+（省略）  
+</code></pre><p>これで2010年と2015年でデータ分けができた<br>
+ここからはデータの計算をする<br>
+人口増減率を出すには</p>
+<blockquote>
+<p><strong>{(2015の人口÷2010の人口)-1}×100</strong></p>
+</blockquote>
+<p>で増減率を％単位で出せるはずだが果たして…?<br>
+とりあえずここでは増加率について出してみる<br>
+ここで再びapp.jsファイルを書き換えてみよう</p>
+<pre><code class="language-java:" data-lang="java:"> 'use strict';
+ const fs = require('fs');
+ const readline = require('readline');
+ const rs = fs.createReadStream('./popu-pref.csv');
+ const rl = readline.createInterface({ input: rs, output: {} });
++const prefectureDataMap = new Map(); // key: 都道府県 value: 集計データのオブジェクト
+ rl.on('line', lineString =&gt; {
+   const columns = lineString.split(',');
+   const year = parseInt(columns[0]);
+   const prefecture = columns[1];
+   const popu = parseInt(columns[3]);
+   if (year === 2010 || year === 2015) {
+-    console.log(year);
+-    console.log(prefecture);
+-    console.log(popu);
++    let value = prefectureDataMap.get(prefecture);
++    if (!value) {
++      value = {
++        popu10: 0,
++        popu15: 0,
++        change: null
++      };
++    }
++    if (year === 2010) {
++      value.popu10 = popu;
++    }
++    if (year === 2015) {
++      value.popu15 = popu;
++    }
++    prefectureDataMap.set(prefecture, value);
+   }
+ });
++rl.on('close', () =&gt; {
++  console.log(prefectureDataMap);
++});  
+</code></pre><p>(＋が追加、−が削除)</p>
+<p>この状態で</p>
+<pre><code class="language-java:" data-lang="java:">node app.js  
+</code></pre><p>コンソールを確認</p>
+<pre><code class="language-java:" data-lang="java:">Map {
+  '北海道' =&gt; { popu10: 258530, popu15: 236840, change: null },
+  '青森県' =&gt; { popu10: 67308, popu15: 61593, change: null },
+  '岩手県' =&gt; { popu10: 64637, popu15: 57619, change: null },  
+</code></pre><p>ここで一番最後のcloseのイベントを以下のように追加実装させる</p>
+<pre><code class="language-java:" data-lang="java:">rl.on('close', () =&gt; {
+  for (const [key, value] of prefectureDataMap) {
+    value.change = value.popu15 / value.popu10;
+  }
+  console.log(prefectureDataMap);
+});  
+</code></pre><p><strong>value.change = value.popu15 / value.popu10;これで割り算をしてる</strong><br>
+これで変化率が出てくるはず</p>
+<pre><code class="language-java:" data-lang="java:">Map {
+  '北海道' =&gt; { popu10: 258530, popu15: 236840, change: 0.9161025799713767 },
+  '青森県' =&gt; { popu10: 67308, popu15: 61593, change: 0.9150918167231236 },
+  '岩手県' =&gt; { popu10: 64637, popu15: 57619, change: 0.8914244163559571 },
+</code></pre><p>最後に並び替え!<br>
+app.jsのclose部分を書き換え</p>
+<pre><code class="language-java:" data-lang="java:"> rl.on('close', () =&gt; {
+-  console.log(prefectureDataMap);
++  for (const [key, value] of prefectureDataMap) {
++    value.change = value.popu15 / value.popu10;
++  }
++  const rankingArray = Array.from(prefectureDataMap).sort((pair1, pair2) =&gt; {
++    return pair2[1].change - pair1[1].change;
++  });
++  console.log(rankingArray);
+ });  
+</code></pre><p>(＋が追加、−が削除)<br>
+これで最後…</p>
+<pre><code class="language-java:" data-lang="java:">[ [ '愛知県',
+ { popu10: 361670, popu15: 371756, change: 1.0278873005778748 } ],
+[ '大阪府',
+ { popu10: 416930, popu15: 426504, change: 1.0229630873288083 } ],
+[ '富山県',
+ { popu10: 47585, popu15: 48442, change: 1.0180098770620993 } ],
+[ '神奈川県',
+ { popu10: 421017, popu15: 426358, change: 1.0126859485483959 } ],  
+</code></pre><p>ランキングがこれでできた!!あとは綺麗に表示させるとか色々構文の中弄ってみても良さそう</p>
+<h3 id="おまけ">おまけ</h3>
+<p>綺麗に出力させてみる<br>
+app.jsを書き換えてみる (下部分のclose部分のみ)</p>
+<pre><code class="language-java:" data-lang="java:"> rl.on('close', () =&gt; {
+   for (const [key, value] of prefectureDataMap) {
+     value.change = value.popu15 / value.popu10;
+   }
+   const rankingArray = Array.from(prefectureDataMap).sort((pair1, pair2) =&gt; {
+     return pair2[1].change - pair1[1].change;
+   });
+-  console.log(rankingArray);
++  const rankingStrings = rankingArray.map(([key, value]) =&gt; {
++    return (
++      key +
++      ': ' +
++      value.popu10 +
++      '=&gt;' +
++      value.popu15 +
++      ' 変化率:' +
++      value.change
++    );
++  });
++  console.log(rankingStrings);
+ });  
+</code></pre><p>追加部分で見やすさが追加されてる感じ<br>
+コンソール出力</p>
+<pre><code class="language-java:" data-lang="java:">node app.js  
+</code></pre><p>すると…</p>
+<pre><code class="language-java:" data-lang="java:">[ '愛知県: 361670=&gt;371756 変化率:1.0278873005778748',
+'大阪府: 416930=&gt;426504 変化率:1.0229630873288083',
+'富山県: 47585=&gt;48442 変化率:1.0180098770620993',
+'神奈川県: 421017=&gt;426358 変化率:1.0126859485483959',  
+</code></pre><p>いい感じ。👍<br>
+最後の最後…<br>
+増減率を試そう<br>
+app.jsを弄ってみよう(close部分を筆者オリジナルで弄ってみた)</p>
+<pre><code class="language-java:" data-lang="java:">rl.on('close', () =&gt; {
+    for (const [key, value] of prefectureDataMap) {
+        //{(2015の人口÷2010の人口)-1}×100を表す//
+            value.change = ((value.popu15 / value.popu10)-1)*100;
+          }
+          const rankingArray = Array.from(prefectureDataMap).sort((pair1, pair2) =&gt; {
+            return pair2[1].change - pair1[1].change;
+          });
+          //console.log(rankingArray);//
+          const rankingStrings = rankingArray.map(([key, value]) =&gt; {
+                return (
+                  key +
+                  ': ' +
+                  value.popu10 +
+                  '=&gt;' +
+                  value.popu15 +
+                  ' 変化率:' +
+                  value.change +
+                  //%単位で導出//
+                  ' % '
+                );
+              });
+              console.log(rankingStrings);
+        });  
+        ```  
+```java:  
+[
+  '愛知県: 361670=&gt;371756 変化率:2.7887300577874807 % ',
+  '大阪府: 416930=&gt;426504 変化率:2.296308732880825 % ',
+  '富山県: 47585=&gt;48442 変化率:1.8009877062099333 % ',
+  '神奈川県: 421017=&gt;426358 変化率:1.2685948548395887 % ',
+  '滋賀県: 72773=&gt;73562 変化率:1.0841933134541737 % ',
+  '香川県: 43947=&gt;44342 変化率:0.8988099301431296 % ',
+  '岐阜県: 101669=&gt;101755 変化率:0.0845882225653849 % ',
+  '兵庫県: 268710=&gt;268336 変化率:-0.13918350638234545 % ',
+  '長野県: 98872=&gt;98617 変化率:-0.25790921595598704 % ',
+  '静岡県: 169029=&gt;168579 変化率:-0.26622650551089144 % ',  
+  (以下略)  
+</code></pre><p>これでやりたいことができた!<br>
+満足</p>
+</div>
+    <div class="post-footer">
+      <div class="info">
+        
+
+        
+      </div>
+    </div>
+
+    
+  </div>
+
+
+          </div>
+        </div>
+      </main>
+    </div><footer class="footer footer--base">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          2020-2021
+
+        
+      </li>
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script></body>
+</html>

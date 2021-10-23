@@ -6,7 +6,18 @@
     <description>Recent content in Posts on 30Week</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-ja</language>
-    <lastBuildDate>Sun, 10 Oct 2021 10:17:42 +0900</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Oct 2021 12:04:55 +0900</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>集計処理を行うプログラム</title>
+      <link>/posts/node.js-1/</link>
+      <pubDate>Sat, 23 Oct 2021 12:04:55 +0900</pubDate>
+      
+      <guid>/posts/node.js-1/</guid>
+      
+        <description>集計処理を行うプログラム 集計は文字通り数を集めて合算すること</description>
+      
+    </item>
+    
     <item>
       <title>Hugo</title>
       <link>/posts/hugo/</link>
