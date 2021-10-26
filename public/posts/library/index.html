@@ -82,7 +82,7 @@
   
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ライブラリ"/>
-<meta name="twitter:description" content="ライブラリって? "/>
+<meta name="twitter:description" content="ライブラリって? ライブラリ…図書館"/>
 
 
 
@@ -103,7 +103,7 @@
         "alternativeHeadline": "",
         "description": "
       
-        ライブラリって? 
+        ライブラリって? ライブラリ…図書館
 
 
       
@@ -153,7 +153,7 @@
 
     ,
         "url" : "\/posts\/library\/",
-        "wordCount" : "1",
+        "wordCount" : "103",
         "genre" : [ ],
         "keywords" : [ ]
     }
@@ -286,7 +286,66 @@
         <h1>ライブラリ</h1>
         
       </div><h3 id="ライブラリって">ライブラリって?</h3>
-</div>
+<p><del>ライブラリ…図書館</del><br>
+汎用性の高いプログラムを再利用な形でひとまとまりのしたものを表す=辞書みたいな感じ<br>
+ライブラリは非常に便利だからこそ日頃から使い慣れていく必要がある。
+ここでのポイントとして、ライブラリがあること自体を認知しておかないと当然使うことができない。<br>
+なので、テンプレのような処理を実装したい時にライブラリが存在しているか自分で検索するように習慣づけるのが大切だったりする。</p>
+<p>そしてここではNode.jsのためのパッケージマネージャの１つとしてyarnを使用する。</p>
+<blockquote>
+<p><strong>yarn</strong><br>
+どんなライブラリのパッケージがインストールされているか記録し、新しいパッケージのインストール、削除を簡単に実行できるようにするプログラム。<br>
+さらにインストールしたAというパッケージが別のBというパッケージを必要としてる時にBのインストールまで自動的に行うことができる。</p>
+</blockquote>
+<p>yarnを使用するにはwindowsやmacOSにインストールする必要があるが、今回は別途Dockerで開発用の環境を展開している。またNode.jsに特化したDockerイメージを使っている(Node.js-1の記事から使用中)ので、すでにyarnが含まれているのでインストール不要。<br>
+開発環境を用意していない場合は初めに書いた通り、各OSにyarnを導入してみよう。</p>
+<h2 id="実際にyarnを使ってみよう">実際にyarnを使ってみよう</h2>
+<p>作業用のリポジトリを自分で探してきてGitHubからフォークする。</p>
+<blockquote>
+<p>フォーク(fork、派生)とは該当のリポジトリをベースにしてGitHub上に別のリポジトリとして作るコト≠コピペ<br>
+クローン(clone)との大きな違いはリポジトリが作られる場所。クローンはローカル環境で、フォークはGitHub上になる。</p>
+</blockquote>
+<p><strong>GitHubのページの右上にForkというボタンがあるのでそれを押したらフォークされる。その前提で…</strong><br>
+cd ~/workspace (※Node.js-1と同じ前提)<br>
+git clone <a href="mailto:git@github.com">git@github.com</a>:あなたのユーザー名/フォークしてきたリポジトリ.git<br>
+cd フォークしてきたリポジトリ<br>
+code .<br>
+docker-compose up -d<br>
+docker-compose exec app bash</p>
+<p>ここまではNode.js-1でもやった内容とほぼ同じ。<br>
+VSコードを起動してファイルの中身が<br>
+JSファイル…一連の実装を行うファイル<br>
+Dockerfileとdocker-compose.yml<br>
+は最低限必要。<br>
+あと、.gitignore(Gitで管理しないファイルの設定ファイル)もあればなお良い。</p>
+<p>ではファイルも用意できたのでyarnを使ってパッケージのインストールをやってみよう。<br>
+ここでは、axiosという、HTTPリクエストを簡単に送ることができるライブラリをインストールし、使用してみる。</p>
+<pre><code class="language-java:" data-lang="java:">yarn add axios
+</code></pre><p>とコマンドと入力する。その後…</p>
+<pre><code class="language-java:" data-lang="java:">yarn add v1.21.1
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+success Saved lockfile.
+success Saved 4 new dependencies.
+info Direct dependencies
+└─ axios@0.19.2
+info All dependencies
+├─ axios@0.19.2
+├─ debug@3.1.0q
+├─ follow-redirects@1.5.10
+└─ ms@2.0.0
+Done in 0.80s.  
+</code></pre><p>という風にコンソールに出力されたらインストールが成功。ちなみにaxios@0.19.2というのはバージョンを表しているので、使ってる時期等で異なることがあると思われる。またyarnの説明でも少し触れたが、<strong>axiosをインストールした結果このライブラリが他に必要なパッケージもまとめてインストールされている。</strong><br>
+ではこのままプログラム実装まで進んでみよう。<br>
+JSファイル(ここではapp.js)を以下の通り実装する。</p>
+<pre><code class="language-java:" data-lang="java:">'use strict';
+const axios = require('axios');
+axios.get('https://www.google.com').then(res =&gt; {
+  console.log(res.data);
+});  
+</code></pre></div>
     <div class="post-footer">
       <div class="info">
         
