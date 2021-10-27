@@ -7,7 +7,7 @@
   <title>
     Easler
       |
-      サーバーとクライアント
+      モジュール(Node.js3)
 
 
     
@@ -56,7 +56,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-  <link rel="canonical" href="/posts/server/" />
+  <link rel="canonical" href="/posts/module/" />
 
   
   
@@ -81,8 +81,8 @@
 
   
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="サーバーとクライアント"/>
-<meta name="twitter:description" content="サーバーとクライアント サーバー…サービスを提供する側(サービスや機能を提供する側のコンピュータorサーバ用のコンピュータ) クライアント…サービスを要求する側、受ける側 サーバ  　1."/>
+<meta name="twitter:title" content="モジュール(Node.js3)"/>
+<meta name="twitter:description" content="モジュールって? 意味としては「部品」、ITっぽくに言うと「それ自身単独でも機能は成り立つけど、普通は他のモノと組み合わせて使うモノ」"/>
 
 
 
@@ -98,12 +98,12 @@
         "@context": "http://schema.org",
         "@type": "BlogPosting",
         "articleSection": "posts",
-        "name": "サーバーとクライアント",
-        "headline": "サーバーとクライアント",
+        "name": "モジュール(Node.js3)",
+        "headline": "モジュール(Node.js3)",
         "alternativeHeadline": "",
         "description": "
       
-        サーバーとクライアント サーバー…サービスを提供する側(サービスや機能を提供する側のコンピュータorサーバ用のコンピュータ) クライアント…サービスを要求する側、受ける側 サーバ  　1.
+        モジュールって? 意味としては「部品」、ITっぽくに言うと「それ自身単独でも機能は成り立つけど、普通は他のモノと組み合わせて使うモノ」
 
 
       
@@ -114,7 +114,7 @@
         "isFamilyFriendly": "true",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "\/posts\/server\/"
+            "@id": "\/posts\/module\/"
         },
         "author" : {
             "@type": "Person",
@@ -133,9 +133,9 @@
             "name": "Easler"
         },
         "copyrightYear" : "2021",
-        "dateCreated": "2021-10-09T10:40:34.00Z",
-        "datePublished": "2021-10-09T10:40:34.00Z",
-        "dateModified": "2021-10-09T10:40:34.00Z",
+        "dateCreated": "2021-10-26T20:28:02.00Z",
+        "datePublished": "2021-10-26T20:28:02.00Z",
+        "dateModified": "2021-10-26T20:28:02.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "Easler",
@@ -152,8 +152,8 @@
       ]
 
     ,
-        "url" : "\/posts\/server\/",
-        "wordCount" : "8",
+        "url" : "\/posts\/module\/",
+        "wordCount" : "40",
         "genre" : [ ],
         "keywords" : [ ]
     }
@@ -283,19 +283,39 @@
     <div class="post-content">
       
       <div class="post-title">
-        <h1>サーバーとクライアント</h1>
+        <h1>モジュール(Node.js3)</h1>
         
-      </div><h1 id="サーバーとクライアント">サーバーとクライアント</h1>
-<pre><code>サーバー…サービスを提供する側(サービスや機能を提供する側のコンピュータorサーバ用のコンピュータ)
-   クライアント…サービスを要求する側、受ける側
-
-サーバ
-</code></pre>
-<p>　　　1.「役割」としてのサーバ→サービスや機能を提供するのが役割のコンピュータ(≒サービスを提供してるコンピュータ)</p>
-<pre><code> 2.「機器」としてのサーバ→サーバ用途で使うために作られた高性能のコンピュータ
-</code></pre>
-<p>　　　※「役割」としてのサーバはそのサービスを提供するのに、性能面で優秀でないといけない!</p>
-<p>クライアント…サービスや機能を使う側のコンピュータのことor「依頼主」的ニュアンスの強いお客のこと</p>
+      </div><h2 id="モジュールって">モジュールって?</h2>
+<p><strong>意味としては「部品」、ITっぽくに言うと「それ自身単独でも機能は成り立つけど、普通は他のモノと組み合わせて使うモノ」</strong></p>
+<p>ここでは、
+<em><strong>モジュール化した処理</strong></em>
+と言うのを考えてみる。
+上での意味を加味すると、その処理のモジュール化=それ自体で体を為す処理また、後付けで追加機能を実装することもできる処理→
+<em><strong>「処理そのものが拡張性がある1個のパーツ」</strong></em>
+って感じ。<br>
+ex:ラジコンのモーター、ギターのピックアップetc…　　</p>
+<h2 id="モジュールを作ってみよう">モジュールを作ってみよう</h2>
+<p>ここではモジュールの実装まで試してみる。<br>
+実装するにあたって今回はbotを使用する。</p>
+<blockquote>
+<p>bot(ボット)…ROBOT(ロボット)から生まれた言葉。一定のタスクや処理を自動化するためのアプリやプログラムのこと。Twiiterでの有名人の名言をつぶやくBOTやチャットボットとかが有名。</p>
+</blockquote>
+<p>botでの要件については以下のものがあげられる。</p>
+<blockquote>
+<p>bot名 add ◯◯する …タスクを作る(add:加える、追加)<br>
+bot名 done ◯◯する …タスクを完了の状態にする<br>
+bot名 done ◯◯する …タスクを削除する(delete)<br>
+bot名 list …
+<strong>未完了</strong>
+のリスト一覧が表示される
+bot名 donelist …
+<strong>完了している</strong>
+タスク一覧が表示される</p>
+</blockquote>
+<p>要件を考えるときに気をつけないといけないのは、<br>
+<strong>その要件に抜け漏れがないかどうか</strong>
+ということ。<br>
+抜け漏れの発生=ソフトウェアが正常に動かない等実用できる状態じゃなかったなんてことも起こりうる。</p>
 </div>
     <div class="post-footer">
       <div class="info">
