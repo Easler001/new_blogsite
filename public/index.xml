@@ -6,7 +6,18 @@
     <description>Recent content on 30Week</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-ja</language>
-    <lastBuildDate>Tue, 26 Oct 2021 20:28:02 +0900</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Oct 2021 20:36:16 +0900</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTTPのメソッド(Node.js4)</title>
+      <link>/posts/node.js-4/</link>
+      <pubDate>Thu, 28 Oct 2021 20:36:16 +0900</pubDate>
+      
+      <guid>/posts/node.js-4/</guid>
+      
+        <description>そもそもHTTPとは 通信するときの「約束事」</description>
+      
+    </item>
+    
     <item>
       <title>モジュール(Node.js3)</title>
       <link>/posts/module/</link>
