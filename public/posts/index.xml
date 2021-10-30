@@ -8,7 +8,7 @@
     <language>ja-ja</language>
     <lastBuildDate>Sat, 30 Oct 2021 11:46:00 +0900</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>テンプレートエンジン</title>
+      <title>テンプレートエンジン(Node.js5)</title>
       <link>/posts/engin/</link>
       <pubDate>Sat, 30 Oct 2021 11:46:00 +0900</pubDate>
       
@@ -41,7 +41,7 @@
     </item>
     
     <item>
-      <title>ライブラリ</title>
+      <title>ライブラリ(Node.js2)</title>
       <link>/posts/library/</link>
       <pubDate>Sat, 23 Oct 2021 16:29:23 +0900</pubDate>
       
@@ -52,7 +52,7 @@
     </item>
     
     <item>
-      <title>集計処理を行うプログラム</title>
+      <title>集計処理を行うプログラム(Node.js1)</title>
       <link>/posts/node.js-1/</link>
       <pubDate>Sat, 23 Oct 2021 12:04:55 +0900</pubDate>
       

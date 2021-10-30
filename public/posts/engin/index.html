@@ -7,7 +7,7 @@
   <title>
     Easler
       |
-      テンプレートエンジン
+      テンプレートエンジン(Node.js5)
 
 
     
@@ -81,7 +81,7 @@
 
   
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="テンプレートエンジン"/>
+<meta name="twitter:title" content="テンプレートエンジン(Node.js5)"/>
 <meta name="twitter:description" content="テンプレートエンジン ここまでで HTML フォームから HTTP サーバーへ情報を受け渡せるようになった。"/>
 
 
@@ -98,8 +98,8 @@
         "@context": "http://schema.org",
         "@type": "BlogPosting",
         "articleSection": "posts",
-        "name": "テンプレートエンジン",
-        "headline": "テンプレートエンジン",
+        "name": "テンプレートエンジン(Node.js5)",
+        "headline": "テンプレートエンジン(Node.js5)",
         "alternativeHeadline": "",
         "description": "
       
@@ -153,7 +153,7 @@
 
     ,
         "url" : "\/posts\/engin\/",
-        "wordCount" : "11",
+        "wordCount" : "536",
         "genre" : [ ],
         "keywords" : [ ]
     }
@@ -295,11 +295,214 @@
     <div class="post-content">
       
       <div class="post-title">
-        <h1>テンプレートエンジン</h1>
+        <h1>テンプレートエンジン(Node.js5)</h1>
         
       </div><h2 id="テンプレートエンジン">テンプレートエンジン</h2>
 <p>ここまでで HTML フォームから HTTP サーバーへ情報を受け渡せるようになった。<br>
 今度は HTTP サーバーを Node.js で実装していることを活かして、動的に様々なアンケートを表示させてみる。</p>
+<p>使用するフォルダをクローンしてVSコードで確認。ここについてはこれまでと同様。<br>
+ファイルの構成は</p>
+<ul>
+<li>docker-compose.yml</li>
+<li>Dockerfile</li>
+<li>form.html</li>
+<li>index.js</li>
+<li>package.json</li>
+</ul>
+<p>を前提とする。<br>
+ここではHTMLを動的に表示させるためテンプレートエンジンを利用する。</p>
+<blockquote>
+<p>テンプレートエンジン…テンプレートと文字列とプログラムを組み合わせることで、 静的なユーザーインタフェースのデータである HTML を動的に出力できるライブラリ</p>
+</blockquote>
+<p>Dockerfileに以下を追記する。</p>
+<pre><code>  FROM --platform=linux/x86_64 node:14.15.4
+  
+  RUN apt-get update
+  RUN apt-get install -y locales vim tmux
+  RUN locale-gen ja_JP.UTF-8
+  RUN localedef -f UTF-8 -i ja_JP ja_JP
+  ENV LANG ja_JP.UTF-8
+  ENV TZ Asia/Tokyo
+  RUN yarn add pug@2.0.4
+  RUN yarn global add pug-cli
+  WORKDIR /app  
+</code></pre><blockquote>
+<p>Pugについて…Node.jsのテンプレートエンジンの一つ
+Pug は、HTML を閉じタグが不要なタグの宣言や入れ子構造に沿った適切なインデントを使うことで、簡潔に表現できる。上記のDockerfileではこのPugのインストール用のコマンドを記載してある。その後、</p>
+</blockquote>
+<pre><code>echo &quot;node_modules&quot; &gt;&gt; .gitignore
+git add .gitignore  
+</code></pre><p>ここでnode_modules をリポジトリ管理しないように .gitignore を作成・編集</p>
+<blockquote>
+<p>.gitignoreはGitの管理に含めないファイルを指定するためのファイル。<br>
+管理しないファイルがある時に使用する。</p>
+</blockquote>
+<pre><code>docker-compose up -d
+docker-compose exec app bash  
+</code></pre><p>ここで、今まで通りコンソールを起動。</p>
+<p>その後、</p>
+<pre><code>echo &quot;h1 Pug!&quot; | pug  
+</code></pre><p>と入力する。<br>
+実行後、</p>
+<pre><code>&lt;h1&gt;Pug!&lt;/h1&gt;  
+</code></pre><p>と言う形で表示されたらPugのインストールは完了。<br>
+ここからはhtmlファイルをPugの形式に合わせて編集する。</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;jp&quot;&gt;
+&lt;head&gt;
+	&lt;meta charset=&quot;UTF-8&quot;&gt;
+	&lt;title&gt;アンケート&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+	&lt;h1&gt;どちらが食べたいですか？&lt;/h1&gt;
+	&lt;form method=&quot;post&quot; action=&quot;/enquetes/yaki-shabu&quot;&gt;
+		名前: &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;
+		&lt;input type=&quot;radio&quot; name=&quot;yaki-shabu&quot; value=&quot;焼き肉&quot; /&gt; 焼き肉
+		&lt;input type=&quot;radio&quot; name=&quot;yaki-shabu&quot; value=&quot;しゃぶしゃぶ&quot; /&gt; しゃぶしゃぶ
+		&lt;button type=&quot;submit&quot;&gt;投稿&lt;/button&gt;
+	&lt;/form&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;  
+</code></pre><p>さらにPugファイルを編集するためにVSコードについて設定を少し弄る。<br>
+macなら基本設定タブから設定を押す。<br>
+①Tab sizeの設定<br>
+検索フィールドにtab sizeと入力<br>
+「Editor: Tab Size」の項目の数字を2にする。→これでtabキーで入力される文字数が2になる<br>
+②Insert Spaces の設定<br>
+検索フィールドに insert spaces と入力<br>
+「Editor: Insert Spaces」の項目のチェックをつける。→これでTab キーでスペースが入力されます。<br>
+③Render Whitespace の設定<br>
+検索フィールドにrender whitespaceと入力<br>
+「Editor: Render Whitespace」の項目で「boundary」を選択<br>
+この設定により、スペースなどの本来見えない文字が、ドットなどで表示されるようになる。</p>
+<p>ここでform.pugを読み込めるようにindex.jsを編集する。</p>
+<pre><code>'use strict';
+const http = require('http');
+const pug = require('pug');
+const server = http
+  .createServer((req, res) =&gt; {
+    const now = new Date();
+    console.info('[' + now + '] Requested by ' + req.socket.remoteAddress);
+    res.writeHead(200, {
+      'Content-Type': 'text/html; charset=utf-8'
+    });
+
+    switch (req.method) {
+      case 'GET':
+        res.write(pug.renderFile('./form.pug'));
+        res.end();
+        break;
+      case 'POST':
+        let rawData = '';
+        req
+          .on('data', chunk =&gt; {
+            rawData = rawData + chunk;
+          })
+          .on('end', () =&gt; {
+            const qs = require('querystring');
+            const answer = qs.parse(rawData);
+            const body = answer['name'] + 'さんは' +
+              answer['yaki-shabu'] + 'に投票しました';
+            console.info('[' + now + '] ' + body);
+            res.write('&lt;!DOCTYPE html&gt;&lt;html lang=&quot;ja&quot;&gt;&lt;body&gt;&lt;h1&gt;' +
+              body + '&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;');
+            res.end();
+          });
+        break;
+      default:
+        break;
+    }
+  })
+  .on('error', e =&gt; {
+    console.error('[' + new Date() + '] Server Error', e);
+  })
+  .on('clientError', e =&gt; {
+    console.error('[' + new Date() + '] Client Error', e);
+  });
+const port = 8000;
+server.listen(port, () =&gt; {
+  console.info('[' + new Date() + '] Listening on ' + port);
+});  
+</code></pre><p>そして、</p>
+<pre><code>node index.js  
+</code></pre><p>と入力したら、http://localhost:8000/にアクセス。<br>
+アンケートのフォームが表示されたら成功。</p>
+<p>これをさらに発展させて複数のアンケートを動的に表示させる</p>
+<pre><code>'use strict';
+const http = require('http');
+const pug = require('pug');
+const server = http
+  .createServer((req, res) =&gt; {
+    const now = new Date();
+    console.info('[' + now + '] Requested by ' + req.socket.remoteAddress);
+    res.writeHead(200, {
+      'Content-Type': 'text/html; charset=utf-8'
+    });
+
+    switch (req.method) {
+      case 'GET':
+        if (req.url === '/enquetes/yaki-shabu') {
+          res.write(pug.renderFile('./form.pug', {
+            path: req.url,
+            firstItem: '焼き肉',
+            secondItem: 'しゃぶしゃぶ'          }));
+        } else if (req.url === '/enquetes/rice-bread') {
+          res.write(pug.renderFile('./form.pug', {
+            path: req.url,
+            firstItem: 'ごはん',
+            secondItem: 'パン'
+          }));
+        }
+        res.end();
+        break;
+      case 'POST':
+        let rawData = '';
+        req
+          .on('data', chunk =&gt; {
+            rawData = rawData + chunk;
+          })
+          .on('end', () =&gt; {
+            const qs = require('querystring');
+            const answer = qs.parse(rawData);
+            const body = answer['name'] + 'さんは' +
+              answer['favorite'] + 'に投票しました';
+            console.info('[' + now + '] ' + body);
+            res.write('&lt;!DOCTYPE html&gt;&lt;html lang=&quot;ja&quot;&gt;&lt;body&gt;&lt;h1&gt;' +
+              body + '&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;');
+            res.end();
+          });
+        break;
+      default:
+        break;
+    }
+  })
+  .on('error', e =&gt; {
+    console.error('[' + new Date() + '] Server Error', e);
+  })
+  .on('clientError', e =&gt; {
+    console.error('[' + new Date() + '] Client Error', e);
+  });
+const port = 8000;
+server.listen(port, () =&gt; {
+  console.info('[' + new Date() + '] Listening on ' + port);
+});  
+</code></pre><p>上記では焼肉orしゃぶしゃぶ、ごはんorパンの2つのアンケート<br>
+その後、</p>
+<pre><code>node index.js  
+</code></pre><p>にて起動。それから、<br>
+http://localhost:8000/enquetes/yaki-shabu<br>
+http://localhost:8000/enquetes/rice-bread<br>
+2つのアンケートが眼精していたらok<br>
+ごはんとパンのアンケートに答えると</p>
+<pre><code>吉村さんはごはんに投票しました
+
+</code></pre><p>以上のように表示され、コンソールのログに、</p>
+<pre><code>[Mon Dec 23 2020 10:11:22 GMT+0000 (UTC)] 投稿: 吉村さんはごはんに投票しました
+
+</code></pre><p>以上のように表示される。</p>
+<p>これで、テンプレートエンジンを利用して動的なアンケートページが作成できるようになった。</p>
 </div>
     <div class="post-footer">
       <div class="info">

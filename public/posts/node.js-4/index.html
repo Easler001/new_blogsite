@@ -153,7 +153,7 @@
 
     ,
         "url" : "\/posts\/node.js-4\/",
-        "wordCount" : "119",
+        "wordCount" : "399",
         "genre" : [ ],
         "keywords" : [ ]
     }
@@ -330,29 +330,155 @@ SELETE ⇆    Delete</p>
 <li>package.json</li>
 </ul>
 <p>index.jsを以下の通り編集する。</p>
-<pre><code>`'use strict';
-const http = require('http');
-const server = http
-  .createServer((req, res) =&gt; {
-    console.info(
-      '[' + new Date() + '] Requested by ' + req.socket.remoteAddress
-    );
-    res.writeHead(200, {
-      'Content-Type': 'text/plain; charset=utf-8'
-    });
-    res.write(req.headers['user-agent']);
-    res.end();
+<pre><code>'use strict';
+ const http = require('http');
+ const server = http
+   .createServer((req, res) =&gt; {
+    const now = new Date();
+    console.info('[' + now + '] Requested by ' + req.socket.remoteAddress);
+     res.writeHead(200, {
+       'Content-Type': 'text/plain; charset=utf-8'
+     });
+    switch (req.method) {
+      case 'GET':
+        res.write('GET ' + req.url);
+        break;
+      case 'POST':
+        res.write('POST ' + req.url);
+       let rawData = '';
+        req
+          .on('data', chunk =&gt; {
+            rawData = rawData + chunk;
+          })
+          .on('end', () =&gt; {
+            console.info('[' + now + '] Data posted: ' + rawData);
+          });
+        break;
+      default:
+        break;
+    }
+     res.end();
+   })
+   .on('error', e =&gt; {
+     console.error('[' + new Date() + '] Server Error', e);
+   })
+   .on('clientError', e =&gt; {
+     console.error('[' + new Date() + '] Client Error', e);
+ const port = 8000;
+ server.listen(port, () =&gt; {
+   console.info('[' + new Date() + '] Listening on ' + port);
+ });
+</code></pre><h2 id="補足switch文">【補足】switch文</h2>
+<p>if文と似ている。いわゆる条件分岐で使う構文。
+違いとして…</p>
+<blockquote>
+<p><strong>if文は、上から順番に条件を判定していき、条件が合致したら「指定の処理」を実行する。</strong><br>
+<strong>どれかの条件に合致するとそれ以降の条件判定は行わない。</strong><br>
+<strong>switch文は、ある特定のデータの値のパターンをチェックする。</strong><br>
+<strong>特定のデータに対して、多くの比較値で条件分岐する場合は、if文よりもswitch文の方が簡潔に書くことが出来る。</strong></p>
+</blockquote>
+<p>例として、以下のコードでは変数nがcase文で指定された1の時と2の時で、実行される行が変わる。またbreakという文が実行されるかreturn文が実行されることで、case文で指定された処理を終了する。</p>
+<pre><code>switch (n) {
+  case 1:
+    // n === 1 の時、この行を実行
+    break; // ここで処理を中断
+  case 2:
+    // n === 2 の時、この行を実行
+    break; // ここで処理を中断
+  default:
+    break; // n が 1 でも 2 でもない場合はすぐ中断し、なにもしない
+}  
+</code></pre><p>では、動作を確認してみる。</p>
+<pre><code>cd ~/workspace/node-js-http-3013
+docker-compose up -d
+docker-compose exec app bash  
+node  
+</code></pre><p>コンソールにアクセスして、REPLを起動させる。<br>
+以下をコピペして実行してみる。</p>
+<pre><code>function greet(name) {
+  switch (name) {
+    case 'taro':
+      return 'こんにちは';
+    case 'john':
+      return 'hello';
+    default:
+      console.log('登録なし');
+      break;
+  }
+  return '';
+}
+greet('taro');
+greet('john');
+greet('pochi');
+
+</code></pre><p>すると、</p>
+<pre><code>&gt; greet('taro');
+'こんにちは'
+&gt; greet('john');
+'hello'
+&gt; greet('pochi');
+登録なし
+''
+
+</code></pre><p>と表示される。<br>
+冒頭の説明のようにif文と同じように条件の判定を行うことができる。</p>
+<p>これらを踏まえて、index.jsの中身について深掘りしてみる。</p>
+<pre><code>switch (req.method) {
+  case 'GET':
+    res.write('GET ' + req.url);
+    break;
+  case 'POST':
+    res.write('POST ' + req.url);
+    let rawData = '';
+    req
+      .on('data', chunk =&gt; {
+        rawData = rawData + chunk;
+      })
+      .on('end', () =&gt; {
+        console.info('[' + now + '] Data posted: ' + rawData);
+      });
+    break;
+  default:
+    break;
+}
+
+</code></pre><p>ここでは、reqオブジェクトから、HTTP メソッドの文字列req.methodを得て、処理を分岐させている。<br>
+&lsquo;GET&rsquo;メソッドならば、そのURLをコンテンツとしてレスポンスに返して終わりになる。&lsquo;POST&rsquo;メソッドの際もまずは、そのURLをコンテンツとしてレスポンスに返している。<br>
+そして、POSTの際には追加して送られてくるデータがあるので、その処理を記述している。</p>
+<pre><code>let rawData = '';
+req
+  .on('data', chunk =&gt; {
+    rawData = rawData + chunk;
   })
-  .on('error', e =&gt; {
-    console.error('[' + new Date() + '] Server Error', e);
-  })
-  .on('clientError', e =&gt; {
-    console.error('[' + new Date() + '] Client Error', e);
+  .on('end', () =&gt; {
+    console.info('[' + now + '] Data posted: ' + rawData);
   });
-const port = 8000;
-server.listen(port, () =&gt; {
-  console.info('[' + new Date() + '] Listening on ' + port);
-});  
+
+</code></pre><p>reqと書かれているリクエストオブジェクトも、Streamと同様にイベントを発行するオブジェクト。そのため、データを受けとった際にはdataというイベントが発生する。データは細切れな状態でchunk変数に入れて受け取り、それを元のrawData という文字列に繋げる。全て受信したら、文字列データをinfoログとして出力している。<br>
+ではコードを実行してみよう。tmuxでウィンドウを2つ立ち上げてアクセスする。</p>
+<pre><code>tmux  
+node index.js  
+</code></pre><p>別ウィンドウはctrl+bを押した後cを押すとウィンドウが切り替わる。<br>
+この別ウィンドウでGETメソッドにアクセスする。</p>
+<pre><code>curl http://localhost:8000/messages  
+</code></pre><p>以上のようにURLのパスの後ろに/messagesと加えてアクセス。</p>
+<pre><code>GET /messages
+
+</code></pre><p>とクライアント側のコンソールに表示されたらok<br>
+更にPOSTメソッドでのアクセスを行うために、データを送ってみよう。</p>
+<pre><code>curl -d 'message=こんにちは' http://localhost:8000/messages  
+</code></pre><p>その後、</p>
+<pre><code>POST /messages
+
+</code></pre><p>と表示されたらこれもok<br>
+次にサーバー側のコンソールを、Ctrl+b→0を押して確認してみる。</p>
+<pre><code>[Tue Feb 12 2020 16:37:51 GMT+0900 (GMT+09:00)] Requested by ::ffff:127.0.0.1
+[Tue Feb 12 2020 16:37:51 GMT+0900 (GMT+09:00)] Data posted: message=こんにちは
+
+</code></pre><p>これで、クライアントからサーバーに対してデータを送信できた。</p>
+<p>POSTメソッドを使うと更に大きなファイルであっても送信ができる。</p>
+<p>【補足】curl -d フォームの送信にて使用。(-dは&ndash;dataも可)</p>
+<pre><code>例:$ curl --data FORM_ID=VALUE http://www.example.com/  
 </code></pre></div>
     <div class="post-footer">
       <div class="info">

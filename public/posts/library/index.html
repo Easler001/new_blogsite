@@ -7,7 +7,7 @@
   <title>
     Easler
       |
-      ライブラリ
+      ライブラリ(Node.js2)
 
 
     
@@ -81,7 +81,7 @@
 
   
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="ライブラリ"/>
+<meta name="twitter:title" content="ライブラリ(Node.js2)"/>
 <meta name="twitter:description" content="ライブラリって? ライブラリ…図書館"/>
 
 
@@ -98,8 +98,8 @@
         "@context": "http://schema.org",
         "@type": "BlogPosting",
         "articleSection": "posts",
-        "name": "ライブラリ",
-        "headline": "ライブラリ",
+        "name": "ライブラリ(Node.js2)",
+        "headline": "ライブラリ(Node.js2)",
         "alternativeHeadline": "",
         "description": "
       
@@ -153,7 +153,7 @@
 
     ,
         "url" : "\/posts\/library\/",
-        "wordCount" : "103",
+        "wordCount" : "309",
         "genre" : [ ],
         "keywords" : [ ]
     }
@@ -295,7 +295,7 @@
     <div class="post-content">
       
       <div class="post-title">
-        <h1>ライブラリ</h1>
+        <h1>ライブラリ(Node.js2)</h1>
         
       </div><h3 id="ライブラリって">ライブラリって?</h3>
 <p><del>ライブラリ…図書館</del><br>
@@ -357,7 +357,113 @@ const axios = require('axios');
 axios.get('https://www.google.com').then(res =&gt; {
   console.log(res.data);
 });  
-</code></pre></div>
+</code></pre><p>これは、axiosというライブラリの API にそって記述している。パッケージを require 関数でモジュールとして取得し、axiosという変数名をつける。axios のドキュメントによれば、axios はオブジェクトで、getというメソッドを持っている。そのgetメソッドに対して HTTP リクエストを送る URL を渡し、さらにそのthenメソッドに対して HTTP レスポンスを受け取った際に実行する無名関数を渡している。</p>
+<p>早速実行。</p>
+<pre><code>`node app.js`  
+</code></pre><p>多分GoogleのトップページのHTMLが一気に表示される。<br>
+このようにyarn addでnode_modulesディレクトリにインストールされたnpmパッケージは自動的に読み込まれ、そのディレクトリ内で利用できる。便利だね…</p>
+<h2 id="-npm-パッケージを作ってみよう"># npm パッケージを作ってみよう</h2>
+<p>npmパッケージは自分でも作れる!<br>
+npmサイトに登録するという手段については今回使わず自分で作成する手順を確認してみる。</p>
+<h3 id="sumライブラリの作成">sumライブラリの作成</h3>
+<p>Dockerコンテナのコンソールで、次のようにsumパッケージを置くディレクトリを作ってみる。</p>
+<pre><code>cd /yarn-training
+mkdir sum
+cd sum  
+</code></pre><p>そのまま、</p>
+<pre><code>yarn init  
+</code></pre><p>npm パッケージとして初期化するためのチュートリアルが始まる。ちなみにyarn initのinitはinitialize（初期化）の略です。<br>
+<del>そういえばgit initとかあったな</del><br>
+以下確認画面がenterキー連打で</p>
+<pre><code>success Saved package.json
+Done in 10.10s.
+
+</code></pre><p>のような感じで表示されたらok<br>
+これで、package.jsonという npm パッケージの情報ファイルが書き込まれた。<br>
+ここからパッケージsumの実装。これは、<br>
+<strong>「ライブラリそのものの実装」になる。</strong></p>
+<pre><code>touch index.js  
+</code></pre><p>でindex.jsを作成したら、sumフォルダをVSコードで開き、index.jsを編集</p>
+<pre><code>'use strict';
+
+/**
+ * 数値の配列を受け取って、その要素の合計を返す関数
+ */
+function add(numbers) {
+  let result = 0;
+  for (const num of numbers) {
+    result = result + num;
+  }
+  return result;
+}
+
+module.exports = {
+  add: add
+};  
+</code></pre><p>中身について…</p>
+<pre><code>function add(numbers) {
+  let result = 0;
+  for (const num of numbers) {
+    result = result + num;
+  }
+  return result;
+}
+
+</code></pre><p>この add 関数は、数値の配列を受け取り、全てを足し合わせる関数。</p>
+<pre><code>module.exports = {
+  add: add
+};
+
+</code></pre><p>これについては、npmに限らず、特定の関数をモジュールとしてファイルの外部から使えるようにするのに、使えるようにしたい関数やオブジェクトをmodule.exportsに代入する。<br>
+具体的に言うと、<br>
+module.exportsに、</p>
+<pre><code>{
+  add: add
+}
+
+</code></pre><p>が代入されている。<br>
+このオブジェクトが、外部から使えるsumモジュールになる。</p>
+<p>ここでadd: addの、左側のaddはオブジェクトのプロパティ（メソッド）の名前で、右側のaddは上で定義した関数。</p>
+<p>つまり、上で定義したaddという関数をメソッドに持つオブジェクトがsumモジュールになる。</p>
+<h2 id="自作sumライブラリを使ったアプリケーション">自作sumライブラリを使ったアプリケーション</h2>
+<p>今度は上で作ったsumパッケージを使うアプリケーションを作成してみる。今度は
+<strong>「ライブラリそのものの実装」ではなく「ライブラリを使った実装」となる。</strong></p>
+<pre><code>cd /yarn-training
+mkdir sum-app
+cd sum-app  
+</code></pre><p>上記のようにsum-appディレクトリを作成する。<br>
+これまで同様</p>
+<pre><code>yarn init  
+</code></pre><p>enter連打でok</p>
+<h3 id="自作sumライブラリのインストール">自作sumライブラリのインストール</h3>
+<pre><code>yarn add ../sum  
+</code></pre><p>パッケージのインストール。その後、</p>
+<pre><code>success Saved lockfile.
+success Saved 1 new dependency.
+info Direct dependencies
+└─ sum@1.0.0
+info All dependencies
+└─ sum@1.0.0
+Done in 0.15s.
+
+</code></pre><p>と表示されたらnode_modulesにさっき作ったsumパッケージがインストールされたことになる。</p>
+<h3 id="-自作-sum-ライブラリを使ったプログラムの実装">### 自作 sum ライブラリを使ったプログラムの実装</h3>
+<p>続いてDockerコンテナのコンソールで、</p>
+<p>cd /yarn-training/sum-app</p>
+<p>sum-appディレクトリに移動。</p>
+<pre><code>touch app.js  
+</code></pre><p>app.jsを作成。sum-appフォルダをVSコードで開き、app.jsを編集。</p>
+<pre><code>'use strict';
+const s = require('sum');
+console.log(s.add([1, 2, 3, 4]));  
+</code></pre><p>sumモジュールを変数sに代入している。自作のsumモジュールはaddのメソッドなのでsはaddのメソッドを持ったオブジェクト。<br>
+console.logでは1から4を足し合わせてるようだ。<br>
+ということで…</p>
+<pre><code>node index.js  
+</code></pre><p>その結果、</p>
+<pre><code>10  
+</code></pre><p>1+2+3+4 = 10となっているので成功!!</p>
+</div>
     <div class="post-footer">
       <div class="info">
         

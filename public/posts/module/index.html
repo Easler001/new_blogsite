@@ -153,7 +153,7 @@
 
     ,
         "url" : "\/posts\/module\/",
-        "wordCount" : "279",
+        "wordCount" : "1160",
         "genre" : [ ],
         "keywords" : [ ]
     }
@@ -460,7 +460,435 @@ function list() {
 }
 
 module.exports = { add, list };  
-</code></pre></div>
+</code></pre><h2 id="補足filter">【補足】filter</h2>
+<p>与えられた関数の戻り値(処理を終了する際に、呼び出し元に対して渡す値)がtrueである時だけ、その配列の要素を選別した配列を作ることができる。<br>
+ここではfilterの動きを知るために…</p>
+<pre><code>node  
+</code></pre><p>でREPLを起動し、</p>
+<pre><code>[1, 2, 3, 4].filter(function(n) {
+  return n % 2 === 0;
+});
+
+</code></pre><p>と入力する。すると…</p>
+<pre><code>[2, 4]
+
+</code></pre><p>以上のように表示される。これは無名関数が2で割った時の余りが0になる時(n % 2 === 0)だけtrueを返すという関数であるため、配列の要素が 2 の倍数のものだけに選別される。文字通りフィルター。</p>
+<blockquote>
+<p>無名関数…コンピュータプログラム上で定義される関数のうち、名前を付けずに定義されるもの。その場ですぐに実行したり、変数に代入したり、他の関数に引数として渡したりするのに用いられることが多い。</p>
+</blockquote>
+<p>またアロー関数でも記述できる。</p>
+<pre><code>'use strict';
+[1, 2, 3, 4].filter(n =&gt; n % 2 === 0);
+
+</code></pre><p>と入力したら、</p>
+<pre><code>[2, 4]
+
+</code></pre><p>と同じように表示されるはず。アロー関数は、戻り値を1つの式で表せるときにはreturnを省略できる。また、引数が1つのときは引数を囲む( )も省略可能。</p>
+<pre><code>tasks
+  .filter(task =&gt; !task.state)
+
+</code></pre><p>つまりここでは、filterを利用して、tasksという配列の中で完了していないものを選別している。filterに渡している関数は、</p>
+<pre><code>task =&gt; !task.state
+
+</code></pre><p>というアロー関数になる。この関数は、オブジェクトのstateプロパティの値を反転した真偽値を返します。stateはタスクが完了していれば true、未完了 (TODO) ならば falseだったはず。!で真偽値を反転しているので、この関数はタスクが完了していれば falseを、TODO ならば trueを返す。この真偽値が filter に渡され、TODO タスクのみが選出される。</p>
+<hr>
+<h2 id="さらに補足アロー関数">【さらに補足】アロー関数</h2>
+<p>その名の通り、　=&gt;(矢)を使って関数リテラルを記述する。<br>
+で、その関数リテラルとは、関数リテラルとはソースコードに直接べた書きされた関数のこと。<br>
+&laquo;関数リテラルの例&raquo;</p>
+<pre><code>let getTriangle = function(base,height){
+ return base * height / 2;
+};
+console.log('三角形の面積は' + getTriangle(10,2));//三角形の面積は10  
+</code></pre><p>関数リテラルは宣言した時点では名前を持たないことから　匿名関数　無名関数　と呼ばれる。
+上記の例ではfunction(base,height){&hellip;};と名前のない関数を定義した上で変数getTriangleに格納。<br>
+前置きが長くなったが、とどのつまりアロー関数は関数リテラルをシンプルに記述する方法である。<br>
+アロー関数では、</p>
+<pre><code>(引数,...)=&gt;{...関数の本体...}  
+</code></pre><p>以上のように記述する。先程の関数リテラルの例をアロー関数にするとこんな感じ。↓</p>
+<pre><code>let getTriangle = (base, height) =&gt; {
+  return base * height / 2;
+};
+console.log('三角形の面積は' + getTriangle(10,2));//三角形の面積は10
+</code></pre><p>functionの代わりに=&gt;が使われている。こんな感じで使用し、条件によっては更に簡素化も可能なので使えるに越したことはないかも。</p>
+<hr>
+<p>そして最後のmapに渡している関数も、無名関数をアロー関数を使った省略記法で記述している。</p>
+<pre><code>t =&gt; t.name
+
+</code></pre><p>引数tで配列の要素を取得して、選別されたタスクのnameプロパティから文字列を取得し、その文字列だけの値に変換する関数が与えられている。そのため、これでタスクの中でも TODO であるタスクの名前の一覧が取得される。<br>
+そしてこのlist関数もモジュールのプロパティ（メソッド）として公開。</p>
+<pre><code>module.exports = { add, list };
+
+</code></pre><p>ここまでで、add、list、done、donelist、delの5つの機能のうち、addとlistの2 つの実装が完了。</p>
+<p>大方の実装はやった感はあるけど、ここでindex.jsを動作させるためのテストをしてみる。<br>
+test.jsを以下のように記述し、モジュールとして index.js を読み込む。</p>
+<pre><code>'use strict';
+const todo = require('./index.js');
+console.log('テストが正常に完了しました');  
+</code></pre><p>では、コンソールで</p>
+<pre><code>yarn test  
+</code></pre><p>と実行。</p>
+<pre><code>yarn run v1.21.1
+$ node test.js
+テストが正常に完了しました
+Done in 0.15s.
+
+</code></pre><p>と表示されたら成功。</p>
+<h2 id="add-と-list-のテストを実装">add と list のテストを実装</h2>
+<p>それでは、実際に todo モジュールを利用して、一覧を取得できるかのテストを実装してみよう。test.jsへの実装は以下の通り。</p>
+<pre><code>'use strict';
+const todo = require('./index.js');
+const assert = require('assert');
+
+// add と list のテスト
+todo.add('ノートを買う');
+todo.add('鉛筆を買う');
+assert.deepStrictEqual(todo.list(), ['ノートを買う', '鉛筆を買う']);
+
+console.log('テストが正常に完了しました');  
+</code></pre><h3 id="assert-モジュールの読み込み">assert モジュールの読み込み</h3>
+<p>まず、</p>
+<pre><code>const assert = require('assert');
+
+</code></pre><p>の部分では、Node.js でテストをするためのassertというモジュールを呼び出している。</p>
+<h3 id="add-メソッドの呼び出し">add メソッドの呼び出し</h3>
+<p>で、</p>
+<pre><code>todo.add('ノートを買う');
+todo.add('鉛筆を買う');
+
+</code></pre><p>の部分では、TODOを実際に2つ追加している。</p>
+<p>ここで、</p>
+<pre><code>todo.add('ノートを買う');
+
+</code></pre><p>の、todoはconst todo = require('./index.js');で読み込んだオブジェクト。</p>
+<p>index.js では、{ add, list }というオブジェクトをモジュール(部品)として公開したので、const todo = require('./index.js'); の todo にはこのオブジェクトが代入されている。</p>
+<p>そして、</p>
+<pre><code>todo.add('ノートを買う');
+
+</code></pre><p>の addは、todoオブジェクトが持つプロパティの1つ。改めてindex.jsを見ると、{ add, list } というオブジェクトの add プロパティは関数（メソッド）だとわかる。</p>
+<p>つまり、</p>
+<pre><code>todo.add('ノートを買う');
+
+</code></pre><p>はtodoオブジェクトの中のaddメソッドを呼び出している、ということ。</p>
+<p>したがって、</p>
+<pre><code>todo.add('ノートを買う');
+todo.add('鉛筆を買う');
+
+</code></pre><p>で2つのタスクを追加したので、todo.list()を呼び出せば、この2つのタスクが取得されるはず。</p>
+<h3 id="list-メソッドの呼び出し">list メソッドの呼び出し</h3>
+<p>実際にテストするのは、以下の通り。</p>
+<pre><code>assert.deepStrictEqual(todo.list(), ['ノートを買う', '鉛筆を買う']);
+
+</code></pre><h3 id="deepequal-と-deepstrictequal">deepEqual と deepStrictEqual</h3>
+<p>assert.deepStrictEqualでは、実際に実行される結果と期待する内容を引数として渡すことで、両者が一致するかどうかをテストできる。</p>
+<p>これはassert.strictEqualとは違い、assert.deepStrictEqualでは、配列やオブジェクトの中身まで見て比較してくれる。</p>
+<p>ちょっとここで REPL を使い、strictEqualとdeepStrictEqualの動きの差を見てみよう。</p>
+<pre><code>node  
+</code></pre><p>REPLを起動。</p>
+<pre><code>'use strict';
+const assert = require('assert');
+
+</code></pre><p>これで、assert モジュールの読み込みをしてみる。</p>
+<p>その後、</p>
+<pre><code>assert.strictEqual(1, 1);
+assert.strictEqual([1], [1]);
+
+</code></pre><p>と入力。するとstrictEqual(1, 1)では AssertionError は発生しないけど、strictEqual([1], [1])では、</p>
+<pre><code>Uncaught:
+AssertionError [ERR_ASSERTION]: Values have same structure but are not reference-equal: [1]
+
+... （中略） ...
+
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [Array],
+  expected: [Array],
+  operator: 'strictEqual'
+}
+
+</code></pre><p>以上のようなエラーが起こる。</p>
+<p>これは JavaScript では配列やオブジェクトを === や == 演算子で比較した場合、同じオブジェクト自身でないとfalseになるという動作から起こる。</p>
+<p>なので、</p>
+<pre><code>1 === 1;
+
+</code></pre><p>はtrueだけど、</p>
+<pre><code>[1] === [1];
+
+</code></pre><p>はfalseになる。</p>
+<p>ただし、</p>
+<pre><code>const a = [1];
+a === a;
+
+</code></pre><p>これは全く同じ配列オブジェクトであるためtrueとなる。ややこしい…</p>
+<p>deepStrictEqualはこれらの問題に対処し、内部までちゃんと比較を行う。そのため、</p>
+<pre><code>assert.deepStrictEqual([1], [1]);
+assert.deepStrictEqual({ p: 1 }, { p: 1 });
+
+</code></pre><p>以上を実行しても AssertionError は発生しない。ここでREPL終了。</p>
+<h3 id="テストの実行">テストの実行</h3>
+<pre><code>yarn test  
+</code></pre><p>以上の通りテストを実行しテストが正常に完了することを確認。</p>
+<p>テストに通ったことで、addとlistが正しく実装された。残りもどんどんやっていく。</p>
+<p>【補足】strict の意味について</p>
+<p>ここまでで、strictEqualとdeepStrictEqualの違いを確認してきたが、assert.strictEqualとassert.deepStrictEqualのほかにassert.equalとassert.deepEqualという「strict のない関数」もある。</p>
+<p>strict は「厳密な」という意味で、assert の等価判定に「厳密等価 ===」を使う。だが、strictのないものは、等価判定に「寛容な等価 ==」を使う。</p>
+<h1 id="done-と-donelist-の実装">done と donelist の実装</h1>
+<p>doneとdonelistの実装とテストも作っていく。</p>
+<p>index.js の実装は以下の通り。</p>
+<pre><code>`'use strict';
+// { name: タスクの文字列, state: 完了しているかどうかの真偽値 }
+const tasks = [];
+
+/**
+ * TODOを追加する
+ * @param {string} task
+ */
+function add(task) {
+  tasks.push({ name: task, state: false });
+}
+
+/**
+* TODOの一覧の配列を取得する
+* @return {array}
+*/
+function list() {
+  return tasks
+    .filter(task =&gt; !task.state)
+    .map(t =&gt; t.name);
+}
+
+/**
+ * TODOを完了状態にする
+ * @param {string} task
+ */
+function done(task) {
+  const indexFound = tasks.findIndex(t =&gt; t.name === task);
+  if (indexFound !== -1) {
+    tasks[indexFound].state = true;
+  }
+}
+
+/**
+ * 完了済みのタスクの一覧の配列を取得する
+ * @return {array}
+ */
+function donelist() {
+  return tasks
+    .filter(task =&gt; task.state)
+    .map(t =&gt; t.name);
+}
+
+module.exports = {
+  add,
+  list,
+  done,
+  donelist
+};  
+</code></pre><hr>
+<h1 id="done-メソッドの実装">done メソッドの実装</h1>
+<p>この実装は、まず配列に task が含まれているかを確認し、 もし存在すれば完了状態をtrueに変更していく。</p>
+<pre><code>/**
+ * TODOを完了状態にする
+ * @param {string} task
+ */
+function done(task) {
+  const indexFound = tasks.findIndex(t =&gt; t.name === task);
+  if (indexFound !== -1) {
+    tasks[indexFound].state = true;
+  }
+}
+
+</code></pre><h3 id="配列の-findindex-メソッド">配列の findIndex メソッド</h3>
+<p>今の実装で、配列から task を探索するために、配列の [findIndexという組み込み関数（メソッド）を使っている。findIndexは、配列の要素を順番に見ていき、渡した関数が true を返す要素が見つかったらそのインデックスを返す。見つからなかった場合は、-1を返す。true を返す要素が配列中に複数存在する場合には、最初に見つかった要素のインデックスを返し、それ以外は -1を返す。ここでは配列の各要素をtとして、そのプロパティnameがtaskと一致すれば、発見したとみなす。</p>
+<hr>
+<h1 id="donelist-の実装">donelist の実装</h1>
+<p>ここではlist関数のfilterの条件が真偽で反転した実装となっている。</p>
+<pre><code>/**
+ * 完了済みのタスクの一覧の配列を取得する
+ * @return {array}
+ */
+function donelist() {
+  return tasks
+    .filter(task =&gt; task.state)
+    .map(t =&gt; t.name);
+}
+
+</code></pre><p>&laquo;具体例&raquo;</p>
+<pre><code>**`&gt; [
+    { name: '鉛筆を買う', state: false },
+    { name: 'ノートを買う', state: false },
+    { name: '勉強をする', state: true }
+  ].filter(task =&gt; task.state);
+
+[{ name: '勉強をする', state: true }]`**
+
+**`&gt; [
+    { name: '勉強をする', state: true }
+  ].map(t =&gt; t.name);
+
+['勉強をする']  
+</code></pre><h3 id="モジュールとして公開するオブジェクトの更新">モジュールとして公開するオブジェクトの更新</h3>
+<p>そして最後に追加した関数をモジュールとして公開。</p>
+<pre><code>module.exports = {
+  add,
+  list,
+  done,
+  donelist
+};
+
+</code></pre><h1 id="done-と-donelist-のテスト">done と donelist のテスト</h1>
+<p>doneとdonelistもtest.jsに追加!</p>
+<pre><code>`'use strict';
+const todo = require('./index.js');
+const assert = require('assert');
+
+// add と list のテスト
+todo.add('ノートを買う');
+todo.add('鉛筆を買う');
+assert.deepStrictEqual(todo.list(), ['ノートを買う', '鉛筆を買う']);
+
+// done と donelist のテスト
+todo.done('鉛筆を買う');
+assert.deepStrictEqual(todo.list(), ['ノートを買う']);
+assert.deepStrictEqual(todo.donelist(), ['鉛筆を買う']);
+
+console.log('テストが正常に完了しました');  
+</code></pre><p>先ほどのテストに引き続いてdoneとdonelistのテストを行っている。「鉛筆を買う」を完了にして、それぞれの一覧の状態をテストしている。</p>
+<pre><code>// done と donelist のテスト
+todo.done('鉛筆を買う');
+assert.deepStrictEqual(todo.list(), ['ノートを買う']);
+assert.deepStrictEqual(todo.donelist(), ['鉛筆を買う']);
+
+</code></pre><h3 id="テストの実行-1">テストの実行</h3>
+<pre><code>yarn test  
+</code></pre><p>テストが正常に完了すればOK</p>
+<h1 id="del-の実装">del の実装</h1>
+<p>最後に、delの処理を実装する。index.jsを以下のように実装。</p>
+<pre><code>`'use strict';
+// { name: タスクの文字列, state: 完了しているかどうかの真偽値 }
+const tasks = [];
+
+/**
+ * TODOを追加する
+ * @param {string} task
+ */
+function add(task) {
+  tasks.push({ name: task, state: false });
+}
+
+/**
+* TODOの一覧の配列を取得する
+* @return {array}
+*/
+function list() {
+  return tasks
+    .filter(task =&gt; !task.state)
+    .map(t =&gt; t.name);
+}
+
+/**
+ * TODOを完了状態にする
+ * @param {string} task
+ */
+function done(task) {
+  const indexFound = tasks.findIndex(t =&gt; t.name === task);
+  if (indexFound !== -1) {
+    tasks[indexFound].state = true;
+  }
+}
+
+/**
+ * 完了済みのタスクの一覧の配列を取得する
+ * @return {array}
+ */
+function donelist() {
+  return tasks
+    .filter(task =&gt; task.state)
+    .map(t =&gt; t.name);
+}
+
+/**
+ * 項目を削除する
+ * @param {string} task
+ */
+function del(task) {
+  const indexFound = tasks.findIndex(t =&gt; t.name === task);
+  if (indexFound !== -1) {
+    tasks.splice(indexFound, 1);
+  }
+}
+
+module.exports = {
+  add,
+  list,
+  done,
+  donelist,
+  del
+};  
+</code></pre><p>詳しく見てみる。</p>
+<pre><code>/**
+ * 項目を削除する
+ * @param {string} task
+ */
+function del(task) {
+  const indexFound = tasks.findIndex(t =&gt; t.name === task);
+  if (indexFound !== -1) {
+    tasks.splice(indexFound, 1);
+  }
+}
+
+</code></pre><p>この実装では、まず配列の組み込み関数findIndexを使って、配列からtaskを文字通り探している。taskが見つかった場合にはそのインデックスが、見つからなかった場合には-1がindexFoundに代入される。(既視感)</p>
+<p>そして、次のif文でindexFoundが-1でない場合、すなわち task が見つかった場合の処理を記述する。</p>
+<h3 id="配列の-splice-メソッド">配列の splice メソッド</h3>
+<p>if文のブロックの中では、配列から要素を削除するために、配列のspliceという組み込み関数を使っている。spliceでは、第 1 引数に削除する位置の始まりのインデックス、第 2 引数に削除する要素の個数を指定する。ここでは、インデックスがindexFoundである要素 1 つを削除したいから、</p>
+<pre><code>tasks.splice(indexFound, 1);
+
+</code></pre><p>としている。</p>
+<h3 id="モジュールとして公開するオブジェクトの更新-1">モジュールとして公開するオブジェクトの更新</h3>
+<p>これまで同様、新しく追加したdelをモジュールの関数として公開。</p>
+<pre><code>module.exports = {
+  add,
+  list,
+  done,
+  donelist,
+  del
+};
+
+</code></pre><h1 id="del-のテスト">del のテスト</h1>
+<p>最後に、削除機能を含めたテストとしてtest.jsを以下のように実装する。</p>
+<pre><code>`'use strict';
+const todo = require('./index.js');
+const assert = require('assert');
+
+// add と list のテスト
+todo.add('ノートを買う');
+todo.add('鉛筆を買う');
+assert.deepStrictEqual(todo.list(), ['ノートを買う', '鉛筆を買う']);
+
+// done と donelist のテスト
+todo.done('鉛筆を買う');
+assert.deepStrictEqual(todo.list(), ['ノートを買う']);
+assert.deepStrictEqual(todo.donelist(), ['鉛筆を買う']);
+
+// del のテスト
+todo.del('ノートを買う');
+todo.del('鉛筆を買う');
+assert.deepStrictEqual(todo.list(), []);
+assert.deepStrictEqual(todo.donelist(), []);
+
+console.log('テストが正常に完了しました');  
+</code></pre><p>以下のようにここまで足したタスクを両方共除去し、一覧が空になっていることをテストしていく。</p>
+<pre><code>// del のテスト
+todo.del('ノートを買う');
+todo.del('鉛筆を買う');
+assert.deepStrictEqual(todo.list(), []);
+assert.deepStrictEqual(todo.donelist(), []);
+
+</code></pre><p>では、早速…</p>
+<pre><code>yarn test  
+</code></pre><p>以上を実行して、テストが正常に完了すればOK<br>
+だいぶ長くなったがタスク管理を行うパッケージのtodoはこれで完成!</p>
+</div>
     <div class="post-footer">
       <div class="info">
         
