@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Contacts on 30Week</title>
+    <link>/contact/</link>
+    <description>Recent content in Contacts on 30Week</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-ja</language>
+    <lastBuildDate>Sat, 30 Oct 2021 09:13:46 +0900</lastBuildDate><atom:link href="/contact/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contact</title>
+      <link>/contact/contact/</link>
+      <pubDate>Sat, 30 Oct 2021 09:13:46 +0900</pubDate>
+      
+      <guid>/contact/contact/</guid>
+      
+        <description>お問い合わせはこちらからお願いいたします。</description>
+      
+    </item>
+    
+  </channel>
+</rss>

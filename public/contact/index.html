@@ -7,7 +7,7 @@
   <title>
     Easler
       |
-      HTTPのメソッド(Node.js4)
+      Contacts
 
 
     
@@ -56,9 +56,12 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-  <link rel="canonical" href="/posts/node.js-4/" />
+  <link rel="canonical" href="/contact/" />
 
   
+  <link rel="alternate" type="application/rss+xml" href="/contact/index.xml" title="30Week" />
+
+
   
   
   
@@ -81,8 +84,8 @@
 
   
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="HTTPのメソッド(Node.js4)"/>
-<meta name="twitter:description" content="そもそもHTTPとは 通信するときの「約束事」"/>
+<meta name="twitter:title" content="Contacts"/>
+<meta name="twitter:description" content="Call me Easler"/>
 
 
 
@@ -91,75 +94,6 @@
 
   
   
-  
-  
-  <script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "articleSection": "posts",
-        "name": "HTTPのメソッド(Node.js4)",
-        "headline": "HTTPのメソッド(Node.js4)",
-        "alternativeHeadline": "",
-        "description": "
-      
-        そもそもHTTPとは 通信するときの「約束事」
-
-
-      
-
-
-    ",
-        "inLanguage": "ja-ja",
-        "isFamilyFriendly": "true",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "\/posts\/node.js-4\/"
-        },
-        "author" : {
-            "@type": "Person",
-            "name": "Easler"
-        },
-        "creator" : {
-            "@type": "Person",
-            "name": "Easler"
-        },
-        "accountablePerson" : {
-            "@type": "Person",
-            "name": "Easler"
-        },
-        "copyrightHolder" : {
-            "@type": "Person",
-            "name": "Easler"
-        },
-        "copyrightYear" : "2021",
-        "dateCreated": "2021-10-28T20:36:16.00Z",
-        "datePublished": "2021-10-28T20:36:16.00Z",
-        "dateModified": "2021-10-28T20:36:16.00Z",
-        "publisher":{
-            "@type":"Organization",
-            "name": "Easler",
-            "url": "",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "favicon-32x32.png",
-                "width":"32",
-                "height":"32"
-            }
-        },
-        "image": 
-      [
-      ]
-
-    ,
-        "url" : "\/posts\/node.js-4\/",
-        "wordCount" : "119",
-        "genre" : [ ],
-        "keywords" : [ ]
-    }
-  </script>
-
-
 
 </head>
 <body>
@@ -287,82 +221,37 @@
         <div class="autopagerize_page_element">
           <div class="content">
   <div
-    class="post 
+    class="archive 
       animated fadeInDown
 
     "
   >
-    <div class="post-content">
+    <ul class="list-with-title">
       
-      <div class="post-title">
-        <h1>HTTPのメソッド(Node.js4)</h1>
+        <div class="listing-title">2021</div>
         
-      </div><h3 id="そもそもhttpとは">そもそもHTTPとは</h3>
-<p><strong>通信するときの「約束事」</strong></p>
-<p>お互い言語を揃えないと通じ合えないって感じ。</p>
-<blockquote>
-<p>ex:日本語と英語だとディスコミニケーションだからどっちかに合わせる</p>
-</blockquote>
-<p>HTTPはホームページのファイルを受け渡す時に使う約束事を指してる。</p>
-<p>ここではHTTPのメソッドに焦点を当ててより深めにアプローチしてみよう。</p>
-<p>別記事でサーバーとクライアントについて記載したが、例えばHTTPサーバーを実装したら、サーバーとクライアント(サイト側とサイトを見る人のようなイメージ)との間でやりとり、ここでは<br>
-<strong>クライアントから情報をサーバーに渡すことが出来るようになる。</strong></p>
-<p>これを踏まえた上でPOSTというメソッドについてまず確認してみる。</p>
-<h2 id="httpメソッドとは">HTTPメソッドとは</h2>
-<p>まず、そもそもの話HTTPメソッドとは何なのかというところから。<br>
-<strong>HTTPメソッドとはHTTPリクエストの種類を指す。</strong></p>
-<blockquote>
-<p>【補足】HTTPリクエスト…文字通りだけどwebブラウザがwebサーバに「このページちょうだい」ってお願いすること</p>
-</blockquote>
-<p>HTTPのHTTP1.1のリクエストは8種類あり、そのうち4つはモジュールでも扱ったCRUDに対応している。<br>
-GET    ⇄    Read<br>
-POST   ⇄    Create<br>
-PUT    ⇄    Update/Create<br>
-SELETE ⇆    Delete</p>
-<h1 id="postメソッドの実装">POSTメソッドの実装</h1>
-<p>今回は実際にデータを受け取ってみたいので、上記のうちのPOSTメソッドを扱うコードを作成してみる。<br>
-使えそうなページをGithubからクローンしてみたらVScodeにてファイル構成を確認。<br>
-中身として、</p>
-<ul>
-<li>docker-compose.yml</li>
-<li>Dockerfile</li>
-<li>index.js</li>
-<li>package.json</li>
-</ul>
-<p>index.jsを以下の通り編集する。</p>
-<pre><code>`'use strict';
-const http = require('http');
-const server = http
-  .createServer((req, res) =&gt; {
-    console.info(
-      '[' + new Date() + '] Requested by ' + req.socket.remoteAddress
-    );
-    res.writeHead(200, {
-      'Content-Type': 'text/plain; charset=utf-8'
-    });
-    res.write(req.headers['user-agent']);
-    res.end();
-  })
-  .on('error', e =&gt; {
-    console.error('[' + new Date() + '] Server Error', e);
-  })
-  .on('clientError', e =&gt; {
-    console.error('[' + new Date() + '] Client Error', e);
-  });
-const port = 8000;
-server.listen(port, () =&gt; {
-  console.info('[' + new Date() + '] Listening on ' + port);
-});  
-</code></pre></div>
-    <div class="post-footer">
-      <div class="info">
-        
+          <ul class="listing">
+            <div class="listing-item">
+              <div class="listing-post">
+                <a href="/contact/contact/" title="Contact">Contact</a>
+                <div class="post-time">
+                  <span class="date"
+                    >
+                      Oct 30
+
+
+                    </span
+                  >
+                </div>
+              </div>
+            </div>
+          </ul>
 
         
-      </div>
-    </div>
 
-    
+
+      
+    </ul>
   </div>
 
 

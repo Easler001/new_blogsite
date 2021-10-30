@@ -6,7 +6,29 @@
     <description>Recent content on 30Week</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-ja</language>
-    <lastBuildDate>Thu, 28 Oct 2021 20:36:16 +0900</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Oct 2021 11:46:00 +0900</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>テンプレートエンジン</title>
+      <link>/posts/engin/</link>
+      <pubDate>Sat, 30 Oct 2021 11:46:00 +0900</pubDate>
+      
+      <guid>/posts/engin/</guid>
+      
+        <description>テンプレートエンジン ここまでで HTML フォームから HTTP サーバーへ情報を受け渡せるようになった。</description>
+      
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>/contact/contact/</link>
+      <pubDate>Sat, 30 Oct 2021 09:13:46 +0900</pubDate>
+      
+      <guid>/contact/contact/</guid>
+      
+        <description>お問い合わせはこちらからお願いいたします。</description>
+      
+    </item>
+    
     <item>
       <title>HTTPのメソッド(Node.js4)</title>
       <link>/posts/node.js-4/</link>

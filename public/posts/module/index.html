@@ -153,7 +153,7 @@
 
     ,
         "url" : "\/posts\/module\/",
-        "wordCount" : "40",
+        "wordCount" : "279",
         "genre" : [ ],
         "keywords" : [ ]
     }
@@ -327,8 +327,140 @@ bot名 donelist …
 <p>要件を考えるときに気をつけないといけないのは、<br>
 <strong>その要件に抜け漏れがないかどうか</strong>
 ということ。<br>
-抜け漏れの発生=ソフトウェアが正常に動かない等実用できる状態じゃなかったなんてことも起こりうる。</p>
-</div>
+抜け漏れの発生=ソフトウェアが正常に動かない等実用できる状態じゃなかったなんてことも起こりうる。<br>
+ここではそのその要件漏れがないかのチェック代わりとしてCRUDという概念も補足しておく。</p>
+<blockquote>
+<p><strong>CRUD</strong><br>
+<strong>Create(生成)・Read (読み取り)・Update (更新)・Delete (削除)からできた用語</strong></p>
+</blockquote>
+<p>先程のbotの要件と対応させると…<br>
+<strong>Create  ⇄  add</strong><br>
+<strong>Read    ⇄  list</strong><br>
+<strong>Update  ⇄  done&amp;donelist</strong><br>
+<strong>Delete  ⇄  del</strong><br>
+といった形になる。<br>
+さらに
+<strong>オブジェクトのライフサイクル</strong>
+というものを用いて要件漏れのチェックもできるのでそれも続いて補足する。</p>
+<p><strong>オブジェクトのライフサイクル</strong><br>
+各個の処理、データの集合体(オブジェクトと呼ぶ)がどんな風に生成、変更、削除されるかの様子を表したモノ。<br>
+例えば、addなら処理とデータが生成され、delならそれらが削除されたという感じ。</p>
+<p>ここまで要件漏れについての前置きが長くなったがここからモジュールの実装について考えてみる。<br>
+今回作るのはtodoという名前でタスクの管理をするnpmパッケージを作る。<br>
+さらにいえば、todoと言うオブジェクトの中にadd, done, list, donelist, del コマンドの処理を、関数（メソッド）として実装させる。</p>
+<blockquote>
+<p>【補足】npmパッケージ…npmとはNode Package Managerの略称。字の如くNode.jsのパッケージを管理するツール。<br>
+またここでいうパッケージとは、もともと用意された便利機能をまとめているもの。</p>
+</blockquote>
+<pre><code class="language-java:" data-lang="java:">mkdir ~/workspace/todo
+cd ~/workspace/todo
+code .  
+</code></pre><p>上記の通りコマンドを順番に入力してリポジトリ(ディレクトリ)を作ってVSコードから内蔵ファイルの編集を行う。</p>
+<p>まず、code .のコマンドでVSコードが起動できたらDockerfile と docker-compose.yml を新しく作成し、以下の通りコピペ。<br>
+<strong>1.Dockerfile</strong></p>
+<pre><code class="language-java:" data-lang="java:">FROM --platform=linux/x86_64 node:14.15.4
+
+RUN apt-get update
+RUN apt-get install -y locales
+RUN locale-gen ja_JP.UTF-8
+RUN localedef -f UTF-8 -i ja_JP ja_JP
+ENV LANG ja_JP.UTF-8
+ENV TZ Asia/Tokyo
+WORKDIR /todo  
+</code></pre><p><strong>2.docker-compose.yml</strong></p>
+<pre><code class="language-java:" data-lang="java:">version: '3'
+services:
+  app:
+    build: .
+    tty: true
+    volumes:
+      - .:/todo  
+</code></pre><p>編集が終わればいつものようにDockerを起動する。</p>
+<pre><code class="language-java:" data-lang="java:">cd ~/workspace/todo  
+docker-compose up -d  
+docker-compose exec app bash
+</code></pre><p>コンソールが起動したら新しいnpmパッケージを作る。<br>
+以下コンテナのコンソールから</p>
+<pre><code class="language-java:" data-lang="java:">cd /todo
+yarn init  
+</code></pre><p>上記の通り入力すればパッケージ作成にあたって確認項目が出てくるのでここでは基本enterキー押し続けてok<br>
+これでpackage.jsonというファイルが出来上がる。<br>
+その後早速package.jsonの中身を以下の通り編集する。</p>
+<pre><code class="language-java:" data-lang="java:"> {
+   &quot;name&quot;: &quot;todo&quot;,
+   &quot;version&quot;: &quot;1.0.0&quot;,
+   &quot;main&quot;: &quot;index.js&quot;,
++  &quot;scripts&quot;: {
++    &quot;test&quot;: &quot;node test.js&quot;
++  },
+   &quot;license&quot;: &quot;MIT&quot;
+ }  
+</code></pre><p>(+は追記)</p>
+<blockquote>
+<p>【補足】.jsonファイルについて…avaScript Object Notation（JSON、ジェイソン）はデータ記述言語の1つである。軽量なテキストベースのデータ交換用フォーマットでありプログラミング言語を問わず利用できる<br>
+異なるプログラミング言語間でデータをやりとりするための、共通のデータ記述形式のこと。</p>
+</blockquote>
+<p>上記の
+<strong>scripts</strong>
+プロパティに</p>
+<pre><code class="language-java:" data-lang="java:">{
+  &quot;コマンド名&quot;: &quot;実際に実行するコマンド&quot;
+}  
+</code></pre><p>ここでは</p>
+<pre><code class="language-java:" data-lang="java:">&quot;scripts&quot;: {
+    &quot;test&quot;: &quot;node test.js&quot;
+  },  
+</code></pre><p>のようにオリジナルの yarn コマンドが設定できる。<br>
+このように設定することで、</p>
+<pre><code>yarn コマンド名
+
+</code></pre><p>とコンソールに打ち込むと</p>
+<pre><code>実際に実行するコマンド
+
+</code></pre><p>が実行されるようになる。</p>
+<p>つまりここでは、コンソールに</p>
+<pre><code>yarn test
+
+</code></pre><p>と打ち込むと、実際には</p>
+<pre><code>node test.js
+
+</code></pre><p>が実行されるようになる。<br>
+<strong>(ちなみにyarnはJSで作られたモジュールを管理するパッケージ管理システム。npmとは互換性がある)</strong></p>
+<h2 id="パッケージに必要なファイルの作成">パッケージに必要なファイルの作成</h2>
+<p>あとはパッケージで必要なファイルを追加する。</p>
+<pre><code>touch index.js
+touch test.js  
+</code></pre><p>ファイルはこれで全部。<br>
+ここからテストコードで動作確認しつつ実装していく。<br>
+まずはindex.jsに<br>
+<strong>add ○○する</strong> で「○○ する」というタスクを作成<br>
+<strong>list</strong> で未完了のタスクの一覧を表示<br>
+といった形で2つを実装。<br>
+index.jsを以下の通り編集。</p>
+<pre><code>`'use strict';
+// { name: タスクの文字列, state: 完了しているかどうかの真偽値 }
+const tasks = [];
+
+/**
+ * TODOを追加する
+ * @param {string} task
+ */
+function add(task) {
+  tasks.push({ name: task, state: false });
+}
+
+/**
+* TODOの一覧の配列を取得する
+* @return {array}
+*/
+function list() {
+  return tasks
+    .filter(task =&gt; !task.state)
+    .map(t =&gt; t.name);
+}
+
+module.exports = { add, list };  
+</code></pre></div>
     <div class="post-footer">
       <div class="info">
         

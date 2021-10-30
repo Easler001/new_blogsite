@@ -7,7 +7,7 @@
   <title>
     Easler
       |
-      HTTPのメソッド(Node.js4)
+      Contact
 
 
     
@@ -56,7 +56,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-  <link rel="canonical" href="/posts/node.js-4/" />
+  <link rel="canonical" href="/contact/contact/" />
 
   
   
@@ -81,8 +81,8 @@
 
   
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="HTTPのメソッド(Node.js4)"/>
-<meta name="twitter:description" content="そもそもHTTPとは 通信するときの「約束事」"/>
+<meta name="twitter:title" content="Contact"/>
+<meta name="twitter:description" content="お問い合わせはこちらからお願いいたします。"/>
 
 
 
@@ -97,13 +97,13 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "articleSection": "posts",
-        "name": "HTTPのメソッド(Node.js4)",
-        "headline": "HTTPのメソッド(Node.js4)",
+        "articleSection": "contact",
+        "name": "Contact",
+        "headline": "Contact",
         "alternativeHeadline": "",
         "description": "
       
-        そもそもHTTPとは 通信するときの「約束事」
+        お問い合わせはこちらからお願いいたします。
 
 
       
@@ -114,7 +114,7 @@
         "isFamilyFriendly": "true",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "\/posts\/node.js-4\/"
+            "@id": "\/contact\/contact\/"
         },
         "author" : {
             "@type": "Person",
@@ -133,9 +133,9 @@
             "name": "Easler"
         },
         "copyrightYear" : "2021",
-        "dateCreated": "2021-10-28T20:36:16.00Z",
-        "datePublished": "2021-10-28T20:36:16.00Z",
-        "dateModified": "2021-10-28T20:36:16.00Z",
+        "dateCreated": "2021-10-30T09:13:46.00Z",
+        "datePublished": "2021-10-30T09:13:46.00Z",
+        "dateModified": "2021-10-30T09:13:46.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "Easler",
@@ -152,8 +152,8 @@
       ]
 
     ,
-        "url" : "\/posts\/node.js-4\/",
-        "wordCount" : "119",
+        "url" : "\/contact\/contact\/",
+        "wordCount" : "2",
         "genre" : [ ],
         "keywords" : [ ]
     }
@@ -218,6 +218,9 @@
           
           <li>
             <a
+              
+                class="current"
+
               
               href="/contact/contact/"
               
@@ -295,65 +298,11 @@
     <div class="post-content">
       
       <div class="post-title">
-        <h1>HTTPのメソッド(Node.js4)</h1>
+        <h1>Contact</h1>
         
-      </div><h3 id="そもそもhttpとは">そもそもHTTPとは</h3>
-<p><strong>通信するときの「約束事」</strong></p>
-<p>お互い言語を揃えないと通じ合えないって感じ。</p>
-<blockquote>
-<p>ex:日本語と英語だとディスコミニケーションだからどっちかに合わせる</p>
-</blockquote>
-<p>HTTPはホームページのファイルを受け渡す時に使う約束事を指してる。</p>
-<p>ここではHTTPのメソッドに焦点を当ててより深めにアプローチしてみよう。</p>
-<p>別記事でサーバーとクライアントについて記載したが、例えばHTTPサーバーを実装したら、サーバーとクライアント(サイト側とサイトを見る人のようなイメージ)との間でやりとり、ここでは<br>
-<strong>クライアントから情報をサーバーに渡すことが出来るようになる。</strong></p>
-<p>これを踏まえた上でPOSTというメソッドについてまず確認してみる。</p>
-<h2 id="httpメソッドとは">HTTPメソッドとは</h2>
-<p>まず、そもそもの話HTTPメソッドとは何なのかというところから。<br>
-<strong>HTTPメソッドとはHTTPリクエストの種類を指す。</strong></p>
-<blockquote>
-<p>【補足】HTTPリクエスト…文字通りだけどwebブラウザがwebサーバに「このページちょうだい」ってお願いすること</p>
-</blockquote>
-<p>HTTPのHTTP1.1のリクエストは8種類あり、そのうち4つはモジュールでも扱ったCRUDに対応している。<br>
-GET    ⇄    Read<br>
-POST   ⇄    Create<br>
-PUT    ⇄    Update/Create<br>
-SELETE ⇆    Delete</p>
-<h1 id="postメソッドの実装">POSTメソッドの実装</h1>
-<p>今回は実際にデータを受け取ってみたいので、上記のうちのPOSTメソッドを扱うコードを作成してみる。<br>
-使えそうなページをGithubからクローンしてみたらVScodeにてファイル構成を確認。<br>
-中身として、</p>
-<ul>
-<li>docker-compose.yml</li>
-<li>Dockerfile</li>
-<li>index.js</li>
-<li>package.json</li>
-</ul>
-<p>index.jsを以下の通り編集する。</p>
-<pre><code>`'use strict';
-const http = require('http');
-const server = http
-  .createServer((req, res) =&gt; {
-    console.info(
-      '[' + new Date() + '] Requested by ' + req.socket.remoteAddress
-    );
-    res.writeHead(200, {
-      'Content-Type': 'text/plain; charset=utf-8'
-    });
-    res.write(req.headers['user-agent']);
-    res.end();
-  })
-  .on('error', e =&gt; {
-    console.error('[' + new Date() + '] Server Error', e);
-  })
-  .on('clientError', e =&gt; {
-    console.error('[' + new Date() + '] Client Error', e);
-  });
-const port = 8000;
-server.listen(port, () =&gt; {
-  console.info('[' + new Date() + '] Listening on ' + port);
-});  
-</code></pre></div>
+      </div><p>お問い合わせはこちらからお願いいたします。<br>
+<!-- raw HTML omitted -->&ldquo;<a href="https://docs.google.com/forms/d/e/1FAIpQLSdWPQmZsnqGKhtxilORmaadUfp6B-681NNOToorOBlsO83Yyw/viewform?embedded=true%22">https://docs.google.com/forms/d/e/1FAIpQLSdWPQmZsnqGKhtxilORmaadUfp6B-681NNOToorOBlsO83Yyw/viewform?embedded=true&quot;</a> <!-- raw HTML omitted --></p>
+</div>
     <div class="post-footer">
       <div class="info">
         
