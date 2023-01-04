@@ -30,20 +30,9 @@
     </item>
     
     <item>
-      <title>テンプレートエンジン(Node.js5)</title>
-      <link>/posts/engin/</link>
-      <pubDate>Sat, 30 Oct 2021 11:46:00 +0900</pubDate>
-      
-      <guid>/posts/engin/</guid>
-      
-        <description>テンプレートエンジン ここまでで HTML フォームから HTTP サーバーへ情報を受け渡せるようになった。</description>
-      
-    </item>
-    
-    <item>
       <title>HTTPのメソッド(Node.js4)</title>
       <link>/posts/node.js-4/</link>
-      <pubDate>Thu, 28 Oct 2021 20:36:16 +0900</pubDate>
+      <pubDate>Fri, 28 Oct 2022 20:36:16 +0900</pubDate>
       
       <guid>/posts/node.js-4/</guid>
       
@@ -52,42 +41,9 @@
     </item>
     
     <item>
-      <title>モジュール(Node.js3)</title>
-      <link>/posts/module/</link>
-      <pubDate>Tue, 26 Oct 2021 20:28:02 +0900</pubDate>
-      
-      <guid>/posts/module/</guid>
-      
-        <description>モジュールって? 意味としては「部品」、ITっぽくに言うと「それ自身単独でも機能は成り立つけど、普通は他のモノと組み合わせて使うモノ」</description>
-      
-    </item>
-    
-    <item>
-      <title>ライブラリ(Node.js2)</title>
-      <link>/posts/library/</link>
-      <pubDate>Sat, 23 Oct 2021 16:29:23 +0900</pubDate>
-      
-      <guid>/posts/library/</guid>
-      
-        <description>ライブラリって? ライブラリ…図書館</description>
-      
-    </item>
-    
-    <item>
-      <title>集計処理を行うプログラム(Node.js1)</title>
-      <link>/posts/node.js-1/</link>
-      <pubDate>Sat, 23 Oct 2021 12:04:55 +0900</pubDate>
-      
-      <guid>/posts/node.js-1/</guid>
-      
-        <description>集計処理を行うプログラム 集計は文字通り数を集めて合算すること</description>
-      
-    </item>
-    
-    <item>
       <title>Hugo(一部修正)</title>
       <link>/posts/hugo/</link>
-      <pubDate>Sun, 10 Oct 2021 10:17:42 +0900</pubDate>
+      <pubDate>Mon, 10 Oct 2022 10:17:42 +0900</pubDate>
       
       <guid>/posts/hugo/</guid>
       
@@ -96,31 +52,9 @@
     </item>
     
     <item>
-      <title>Node</title>
-      <link>/posts/node.js/</link>
-      <pubDate>Sat, 09 Oct 2021 12:07:01 +0900</pubDate>
-      
-      <guid>/posts/node.js/</guid>
-      
-        <description>Node.js 導入と運用まとめ Node.</description>
-      
-    </item>
-    
-    <item>
-      <title>Webapp</title>
-      <link>/posts/webapp/</link>
-      <pubDate>Sat, 09 Oct 2021 12:05:01 +0900</pubDate>
-      
-      <guid>/posts/webapp/</guid>
-      
-        <description>Webアプリケーション 　インターネットを介して使うソフトウェアのこと(極論:LAN線抜いてみて使えなかったらWebアプリ)</description>
-      
-    </item>
-    
-    <item>
       <title>Dockerについて</title>
       <link>/posts/docker/</link>
-      <pubDate>Sat, 09 Oct 2021 10:46:32 +0900</pubDate>
+      <pubDate>Sun, 09 Oct 2022 10:46:32 +0900</pubDate>
       
       <guid>/posts/docker/</guid>
       
@@ -131,7 +65,7 @@
     <item>
       <title>DNS</title>
       <link>/posts/dns/</link>
-      <pubDate>Sat, 09 Oct 2021 10:43:05 +0900</pubDate>
+      <pubDate>Sun, 09 Oct 2022 10:43:05 +0900</pubDate>
       
       <guid>/posts/dns/</guid>
       
@@ -142,7 +76,7 @@
     <item>
       <title>サーバーとクライアント</title>
       <link>/posts/server/</link>
-      <pubDate>Sat, 09 Oct 2021 10:40:34 +0900</pubDate>
+      <pubDate>Sun, 09 Oct 2022 10:40:34 +0900</pubDate>
       
       <guid>/posts/server/</guid>
       
@@ -153,7 +87,7 @@
     <item>
       <title>HTTP通信</title>
       <link>/posts/http/</link>
-      <pubDate>Sat, 09 Oct 2021 10:37:31 +0900</pubDate>
+      <pubDate>Sun, 09 Oct 2022 10:37:31 +0900</pubDate>
       
       <guid>/posts/http/</guid>
       
@@ -164,7 +98,7 @@
     <item>
       <title>通信とネットワーク</title>
       <link>/posts/net/</link>
-      <pubDate>Sat, 09 Oct 2021 10:34:26 +0900</pubDate>
+      <pubDate>Sun, 09 Oct 2022 10:34:26 +0900</pubDate>
       
       <guid>/posts/net/</guid>
       
@@ -175,7 +109,7 @@
     <item>
       <title>CPUについて</title>
       <link>/posts/cpu/</link>
-      <pubDate>Sat, 09 Oct 2021 10:28:55 +0900</pubDate>
+      <pubDate>Sun, 09 Oct 2022 10:28:55 +0900</pubDate>
       
       <guid>/posts/cpu/</guid>
       
@@ -186,7 +120,7 @@
     <item>
       <title>LinuxというOSについて</title>
       <link>/posts/linux/</link>
-      <pubDate>Sat, 02 Oct 2021 17:53:01 +0900</pubDate>
+      <pubDate>Sun, 02 Oct 2022 17:53:01 +0900</pubDate>
       
       <guid>/posts/linux/</guid>
       
