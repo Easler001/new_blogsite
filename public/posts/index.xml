@@ -6,7 +6,29 @@
     <description>Recent content in Posts on 30Week</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-ja</language>
-    <lastBuildDate>Sat, 30 Oct 2021 11:46:00 +0900</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 04 Jan 2023 23:22:44 +0900</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>地方のメガネ屋から考える個人経営におけるビジネスモデルについて </title>
+      <link>/posts/megame/</link>
+      <pubDate>Wed, 04 Jan 2023 23:22:44 +0900</pubDate>
+      
+      <guid>/posts/megame/</guid>
+      
+        <description>突然メガネ屋について語り出すとは何事かと思われたかもしれませんが、特にメガネ屋勤務の志望はありませんのでご容赦ください…</description>
+      
+    </item>
+    
+    <item>
+      <title>転職のあれこれと霞ヶ関への出向について考えたおはなし</title>
+      <link>/posts/carrier/</link>
+      <pubDate>Wed, 04 Jan 2023 22:55:12 +0900</pubDate>
+      
+      <guid>/posts/carrier/</guid>
+      
+        <description>パーソナリティに関することはこれまで書いてこなかったのですが、これまでの仕事のこと、転職について考えたことについてここで書いていこうと思ってます。</description>
+      
+    </item>
+    
     <item>
       <title>テンプレートエンジン(Node.js5)</title>
       <link>/posts/engin/</link>
