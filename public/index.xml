@@ -41,13 +41,13 @@
     </item>
     
     <item>
-      <title>Hugo(一部修正)</title>
+      <title>Hugoを使ったブログサイトの作成</title>
       <link>/posts/hugo/</link>
       <pubDate>Mon, 10 Oct 2022 10:17:42 +0900</pubDate>
       
       <guid>/posts/hugo/</guid>
       
-        <description>Hugoなどを使ってブログサイトを作る Hugo・GitHub・netlifyの３つを軸にしてブログサイトを作ってみる。</description>
+        <description>このブログサイトを作るにあたって、実際にやってみた方法を書いてみます。 タイトルにもあるようにHugoを含め、Github・Netrifyの3つを軸にして作成しました。</description>
       
     </item>
     

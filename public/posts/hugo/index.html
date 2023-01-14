@@ -7,7 +7,7 @@
   <title>
     Easler
       |
-      Hugo(一部修正)
+      Hugoを使ったブログサイトの作成
 
 
     
@@ -81,8 +81,8 @@
 
   
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Hugo(一部修正)"/>
-<meta name="twitter:description" content="Hugoなどを使ってブログサイトを作る Hugo・GitHub・netlifyの３つを軸にしてブログサイトを作ってみる。"/>
+<meta name="twitter:title" content="Hugoを使ったブログサイトの作成"/>
+<meta name="twitter:description" content="このブログサイトを作るにあたって、実際にやってみた方法を書いてみます。 タイトルにもあるようにHugoを含め、Github・Netrifyの3つを軸にして作成しました。"/>
 
 
 
@@ -98,12 +98,12 @@
         "@context": "http://schema.org",
         "@type": "BlogPosting",
         "articleSection": "posts",
-        "name": "Hugo(一部修正)",
-        "headline": "Hugo(一部修正)",
+        "name": "Hugoを使ったブログサイトの作成",
+        "headline": "Hugoを使ったブログサイトの作成",
         "alternativeHeadline": "",
         "description": "
       
-        Hugoなどを使ってブログサイトを作る Hugo・GitHub・netlifyの３つを軸にしてブログサイトを作ってみる。
+        このブログサイトを作るにあたって、実際にやってみた方法を書いてみます。 タイトルにもあるようにHugoを含め、Github・Netrifyの3つを軸にして作成しました。
 
 
       
@@ -153,7 +153,7 @@
 
     ,
         "url" : "\/posts\/hugo\/",
-        "wordCount" : "241",
+        "wordCount" : "248",
         "genre" : [ ],
         "keywords" : [ ]
     }
@@ -295,21 +295,21 @@
     <div class="post-content">
       
       <div class="post-title">
-        <h1>Hugo(一部修正)</h1>
+        <h1>Hugoを使ったブログサイトの作成</h1>
         
-      </div><h1 id="hugoなどを使ってブログサイトを作る">Hugoなどを使ってブログサイトを作る</h1>
-<p>Hugo・GitHub・netlifyの３つを軸にしてブログサイトを作ってみる。</p>
-<p>失敗も相当しているので改めて見返すことも含めてなるべく丁寧に書いておく。</p>
+      </div><p>このブログサイトを作るにあたって、実際にやってみた方法を書いてみます。
+タイトルにもあるようにHugoを含め、Github・Netrifyの3つを軸にして作成しました。</p>
+<p>作業中にやってしまったミス等も含めてできる限り書いていこうと思います。</p>
+<p>※今回の内容はmacにて作業しています。それを念頭に入れてご覧いただければ幸いです。</p>
 <p><strong>も　く　じ</strong></p>
 <ul>
-<li><a href="#hugo%E3%81%AA%E3%81%A9%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%83%96%E3%83%AD%E3%82%B0%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%82%8B">Hugoなどを使ってブログサイトを作る</a></li>
 <li><a href="#%E5%90%84%E9%A0%85%E7%9B%AE%E3%81%AE%E8%A3%9C%E8%B6%B3">各項目の補足</a>
 <ul>
 <li><a href="#hugo">Hugo</a></li>
 <li><a href="#%E9%9D%99%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88">静的サイト</a></li>
 <li><a href="#%E5%8B%95%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88">動的サイト</a></li>
 <li><a href="#github">GitHub</a></li>
-<li><a href="#netlify">netlify</a></li>
+<li><a href="#netlify">Netlify</a></li>
 </ul>
 </li>
 <li><a href="#%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86">ブログを作ろう</a>
@@ -334,96 +334,91 @@
 </blockquote>
 <h2 id="静的サイト">静的サイト</h2>
 <blockquote>
-<p><strong>html,css,JS,imgなどの集合体。動的な処理をしないファイル。大まかに言えばwebサイトがこれに該当する。(いつどこでアクセスしても毎回同じものが表示される、HTMLファイルで作成されたWebページのこと。)</strong></p>
+<p><strong>html,css,JS,imgなどの集合体。動的な処理をしないファイル。大まかに言えばwebサイトがこれに該当する。(いつどこでアクセスしても毎回同じものが表示される、HTMLファイルで作成されたWebページのこと。)静的サイトをホスティングするサービスの一例としてNetlifyがある。</strong></p>
 </blockquote>
 <h2 id="動的サイト">動的サイト</h2>
 <blockquote>
 <p><strong>JS(Node.js)・PHP・Ruby・Java等の集合体。こちらは動的な処理を行うサイト。
 アクセスしたときの状況に応じて異なる内容が表示されるWebページのこと。
-ユーザーが書き込むことで内容が増える掲示板サイトやブログ、表示内容がユーザーごとに違うショッピングサイトや会員制サイトなどが動的ページ。</strong></p>
+ユーザーが書き込むことで内容が増える掲示板サイトやブログ、表示内容がユーザーごとに違うショッピングサイトや会員制サイトなどが動的ページ。動的サイトをホスティングするサービスの一例としてはherokuがある。</strong></p>
 </blockquote>
 <h2 id="github">GitHub</h2>
 <blockquote>
 <p><strong>ソースコードをホスティング(サーバーをネット経由でレンタルすること)するプラットフォーム。ソフトウェア開発者とコードについて共有(HTML,CSS,JSetc…)できるので、プログラミングをしていくには避けて通れないツール。</strong></p>
 </blockquote>
-<h2 id="netlify">netlify</h2>
+<h2 id="netlify">Netlify</h2>
 <blockquote>
 <p><strong>静的サイトをホスティングするwebサービス。上記のhugo作成したブログ記事をここを通して外部に向けて公開することができる。</strong></p>
 </blockquote>
-<p>かんたんに言ってしまえば、</p>
+<p>自分なりに噛み砕いた言い方をすると…</p>
 <p><em><strong>hugoは自分のパソコンの中で爆速でサイトを作れるスペースで、githubはサイト作った時のコード諸々を保管しておく場所。</strong></em></p>
 <p><em><strong>でもhugoだけだと自分のパソコンの中だけでしかそのサイトは見れないからサイトをドメインとかをゲットして外部の人たちにも見てもらおうっていう場所がNetlifyという感じ。</strong></em></p>
-<p><em><strong>自分自身勘違いしそうだったのは、サーバーとかではなくサイトのジェネレーター(生成場)、つまり静的サイトの生産工場ということ。それを念頭に置いておけばコマンド入力の意味もより噛み砕いていけると思う。</strong></em></p>
-<p>ここからはhugoを使ってブログと記事の作成からgithubとNetlifyの連携、サイト公開までの一連の流れをまとめてみる。</p>
+<p><em><strong>自分自身勘違いしそうだったのは、サーバーとかではなくサイトのジェネレーター(生成場)、つまり静的サイトの生産工場ということ。</strong></em></p>
+<p>ここからはhugoを使ってブログと記事の作成からgithubとNetlifyの連携、サイト公開までの一連の流れをまとめてみます。</p>
 <h1 id="ブログを作ろう">ブログを作ろう</h1>
 <h2 id="hugoを始めよう">①hugoを始めよう</h2>
 <p>参照:(<a href="https://takaken.tokyo/dev/hugo/install/hugo-install/">https://takaken.tokyo/dev/hugo/install/hugo-install/</a>)</p>
-<p>方法…Mac使用の場合、Homebrewをインストールする。以下をターミナル(コマンド)でコピペすればインストールできる。(HomebrewはmacOS向けのパッケージを管理するシステムのこと)</p>
+<p>方法…Mac使用の場合、Homebrewをインストールします。以下をターミナル(コマンド)でコピペすればインストール可能です。(HomebrewはmacOS向けのパッケージを管理するシステムのこと)</p>
 <p>以下のコマンドをターミナルに入力するとインストールされる。</p>
-<p>brew install hugo</p>
+<p><code>brew install hugo</code></p>
 <h2 id="githubとnetlifyも登録しよう">②GitHubとNetlifyも登録しよう</h2>
-<p>hogoのインストールよりもかんたん</p>
-<p>それぞれのホームページにアクセスして自分のメールアドレスとパスワードを設定して登録まで終わらせる。</p>
-<p>※注意　両サイトとも英語なのでよく分からない内容はGoogle Chromeのページ翻訳機能を使ってみよう。</p>
-<p>ちなみにdeepLというサイトも翻訳精度ががなり高いのでオススメ(<a href="https://www.deepl.com/ja/translator">https://www.deepl.com/ja/translator</a>)</p>
-<p>インストールできたら早速起動してみよう(連携については後述)</p>
+<p>これらのインストールはhugoよりも簡単です</p>
+<p>それぞれのホームページにアクセスして自分のメールアドレスとパスワードを設定して登録まで終わらせましょう。</p>
+<p>github:(<a href="https://github.com/">https://github.com/</a>)<br>
+Netlify:(<a href="https://www.netlify.com/">https://www.netlify.com/</a>)</p>
+<p>※近頃は日本語訳も増えてきた印象ですが、両サイトとも基本的に殆どが英語なのでよく分からない内容はサイト翻訳を積極的に使うことを推奨します。</p>
+<p>個人的なおすすめはdeepLという翻訳サービスです。翻訳精度が高水準なため重宝しています。<br>
+deepL:(<a href="https://www.deepl.com/ja/translator">https://www.deepl.com/ja/translator</a>)</p>
+<p>インストールできたら早速起動してみましょう(連携については後述)</p>
 <h2 id="hugoでの流れ">③hugoでの流れ</h2>
 <p>①hugoのフォルダ(リポジトリ)を作る→②ブログページのテーマを決める→③githubと連携させる</p>
 <h2 id="-1フォルダ作成">③-1フォルダ作成</h2>
-<p>自分のデスクトップ上にフォルダ(リポジトリ)を作ってみよう</p>
-<p>画面上右クリック(macなら二本指で同時押し)で作ってもいいけど今回はターミナル(コマンド)で作ってみる</p>
-<p>ターミナルで次のように入力しよう</p>
-<blockquote>
-<p><strong>cd desktop  →デスクトップに移動。</strong><br>
-<strong>cd hugo new site 【作りたいブログタイトル】　→デスクトップ上にディレクトリが作成される。</strong><br>
-<strong>【コマンド補足】cd 指定の場所へ移動する。　前の場所に戻りたい時は　cd ..</strong></p>
-</blockquote>
+<p>自分のデスクトップ上にフォルダ(リポジトリ)を作ります</p>
+<p>今回はターミナル(コマンド)で作ります。(画面上二本指で同時押しでも作成可)</p>
+<p>ターミナルで次のように入力します↓</p>
+<p><code>cd desktop  …デスクトップに移動。</code><br>
+<code>cd hugo new site 【作りたいブログタイトル】　…デスクトップ上にディレクトリが作成される。</code><br>
+※コマンド補足cd 指定の場所へ移動する。　前の場所に戻りたい時は　cd ..</p>
 <h2 id="-2テーマを決めよう">③-2テーマを決めよう</h2>
-<p>実際に画面に移すためのページを決めないと真っ白な画面が出てきちゃう…</p>
-<p>なので、ここではページレイアウトつまりテーマを決めてしまう。</p>
-<p>一番手っ取り早いのは、<code>hugo themes</code>とかで検索するとテーマがたくさん補完されたページがヒットする。</p>
-<p>実際のページはこれ:https://themes.gohugo.io/</p>
-<p>☆リンク先のページでは右側のTagsに用途毎でタグ付けされているので、今回なら2番めのBlogから選べばいい。</p>
-<p>あとはそのページにテーマの導入方法が描かれてるのでそれを実行すればいいので、実際にやった方法を載せる</p>
-<p>ターミナルのコマンド</p>
-<blockquote>
-<p><strong>(1)cd themes   ③-1で作ったフォルダの中に<code>themes</code>というフォルダがあるので移動しよう</strong><br>
-<strong>【補足】そのフォルダの中身を確認したい時は <code>ls</code>と入力すると、その中にあるモノを表示してくれる</strong></p>
-</blockquote>
-<blockquote>
-<p>__(2)git clone <a href="https://github.com/huyb1991/hugo-lamp__">https://github.com/huyb1991/hugo-lamp__</a><br>
-<strong>このブログのテーマをこれで取り込んだ!</strong><br>
+<p>フォルダを作っただけでは、もちろん画面は真っ白のまま。実際に画面を表示するためのページを決めないといけません。</p>
+<p>なので、ここではページレイアウトつまりテーマを決めてしまいましょう。</p>
+<p>いざテーマを探すといってもどうすればいいか迷ってしまうものですが、<br>
+とりあえず<code>hugo themes</code>と検索してしまいましょう。テーマがたくさん補完されたページがヒットします。</p>
+<p>実際のページはこちら:(<a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a>)</p>
+<p>気に入ったテーマが見つかったら、あとはそのページにテーマの導入方法が描かれてるのでそれを実行しましょう。<br>
+以下では私がテーマを導入した手順を一例として挙げています。</p>
+<p><code>(1)cd themes   …③-1で作ったフォルダの中にthemesというフォルダがあるのでターミナルでcdコマンドを使ってその階層まで移動します</code><br>
+<strong>【補足】そのフォルダの中身を確認したい時は lsと入力すると、その中にあるモノを表示してくれる</strong></p>
+<p><code>(2)git clone https://github.com/huyb1991/hugo-lamp</code><br>
+<strong>このブログのテーマがこれで取り込まれました</strong><br>
 <strong>【補足】git clone…リポジトリ(ファイル等何らかの「保管場所」)のクローンを作る。</strong></p>
-</blockquote>
-<blockquote>
-<p><strong>(3)rm -rf hugo-lamp/.git</strong><br>
+<p><code>(3)rm -rf hugo-lamp/.git</code><br>
 <strong>使わないデータは削除!</strong><br>
 <strong>※使いたいテーマによっては削除しないこともあります</strong></p>
-</blockquote>
 <h2 id="-3-githubと連携しよう">③-3 GitHubと連携しよう</h2>
-<p>ちゃんと連携出来るかのチェックも兼ねてここからGitHubの連携を始めよう
+<p>ちゃんと連携出来るかのチェックも兼ねてここからGitHubの連携を行います。
 <em><strong>ここでは前提としてhugoの全フォルダではなく、hugoにて生成するpublicフォルダだけ連携させる</strong></em></p>
+<p>【補足】GitHubの準備</p>
 <blockquote>
-<p>【補足】GitHubの準備<br>
-GitHubのマイページの左上にある<code>New</code>をクリック<br>
+<p>GitHubのマイページの左上にある<code>New</code>をクリック<br>
 <code>New</code>は<code>New Repository</code>のこと。<br>
 新しいレポジトリ(ファイル)を作成する。<br>
-Create a new repositoryのページでRepository name(hugoと今回連携させるフォルダ名) の設定。</p>
+Create a new repositoryのページでRepository nameの設定。<br>
+※この時、Repository nameは同名にしておくほうが判別しやすいです</p>
 </blockquote>
-<p>ここからターミナルでコマンドを入力していこう</p>
+<p>ここからターミナルでコマンドを入力していきます</p>
 <blockquote>
 <p><strong>hugo</strong><br>
 このコマンドにてpublicフォルダが生成される。このフォルダをgithubに連携させるのが今回の最初の目標</p>
 </blockquote>
 <blockquote>
-<p><strong>git init  ここでgit用のレポジトリ(フォルダ)を作ってGitHubとつなげる下準備をする</strong><br>
-<strong>※これは最初しか行わないので注意!</strong>　　</p>
+<p><strong>git init  ここでgit用のレポジトリ(フォルダ)を作ってGitHubとつなげる下準備をする</strong></p>
 </blockquote>
 <blockquote>
 <p><strong>git add public  これで更新されたデータを追加させる</strong><br>
 <strong>☆☆このコマンドは記事を更新する時毎回必要!!</strong>　<br>
 <em><strong>!git addの注意!</strong></em><br>
-<strong>git add . というコマンドでhugoの全データを追加できるが③-3の前提条件の通りpublicフォルダだけを追加する!!</strong>
+<strong>git add . というコマンドでhugoの全データを追加できるが③-3の前提条件の通りpublicフォルダだけを追加します</strong>
 　</p>
 </blockquote>
 <blockquote>
@@ -437,13 +432,13 @@ Create a new repositoryのページでRepository name(hugoと今回連携させ�
 </blockquote>
 <blockquote>
 <p>git commit -m &lsquo;コメント&rsquo;<br>
-GitHubではファイル名と一緒にコメントも付けられる。<br>
-またファイルの変更や追加とかできるコマンドとなる。<br>
-コメントの中はその都度<code>first commit</code>とか入れてみよう</p>
+GitHubではファイル名と一緒にコメントを付けることが出来ます。<br>
+ファイルの変更や追加とかできるコマンドになります。</p>
 </blockquote>
 <p>補足　git commit</p>
 <blockquote>
-<p>追加・変更したファイルをGitに登録するためのコマンド　ブログ更新したらその都度コメントを変えながらコミットする!</p>
+<p>追加・変更したファイルをGitに登録するためのコマンド　ブログ更新したらその都度コメントを変えながらコミットする!<br>
+ex:初めてのコミットの時は git commit -m &lsquo;first commit&rsquo; みたいな感じ</p>
 </blockquote>
 <blockquote>
 <p>git push origin master (またはgit push -u origin main)<br>
@@ -451,19 +446,18 @@ GitHubではファイル名と一緒にコメントも付けられる。<br>
 エラーが起こらなければGitHubのパスワード入力が求められるので間違えないように入力しよう。</p>
 </blockquote>
 <h2 id="netrifyと連携して公開しよう">④Netrifyと連携して公開しよう!</h2>
-<p>最後にNetrifyと連携させて公開させよう　　</p>
+<p>最後にNetrifyと連携させて実際にブログを公開します！　　</p>
 <blockquote>
 <p>Netlifyのマイページにアクセスして<code>New site from Git</code>をクリック<br>
-これで提携させるファイルを選択する<br>
+これで提携させるファイルを選択します<br>
 選択は左下のGitHubの🐱マークをクリック</p>
 </blockquote>
 <blockquote>
-<p>GitHubを選択したらアカウント確認画面が出てくるのでログインする<br>
-そこから今回のGitHubのファイルを選択して、Deploy siteを押す</p>
+<p>GitHubを選択したらアカウント確認画面が出てくるのでログインしましょう<br>
+そこから今回のGitHubのファイルを選択して、Deploy siteを押します</p>
 </blockquote>
-<blockquote>
-<p>そしたらサイト用のアドレスが設定されているのでクリックして表示されたらクリア!!</p>
-</blockquote>
+<p>以上がサイトが生成されるまでの流れです。<br>
+サイト用のアドレスが設定されているのでクリックしてサイトが正しく表示されたらクリア!!</p>
 <h2 id="手順のまとめ">手順のまとめ</h2>
 <blockquote>
 <p>最初:hugo → git init → git add public → git commit -m &lsquo;コメント&rsquo; → git branch -M main → git remote add origin <a href="https://github.com/">https://github.com/</a>ユーザー名/GitHubのファイル名.git → git push origin master (またはgit push -u origin main)</p>
