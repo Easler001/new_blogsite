@@ -132,10 +132,10 @@
             "@type": "Person",
             "name": "Easler"
         },
-        "copyrightYear" : "2022",
-        "dateCreated": "2022-10-10T10:17:42.00Z",
-        "datePublished": "2022-10-10T10:17:42.00Z",
-        "dateModified": "2022-10-10T10:17:42.00Z",
+        "copyrightYear" : "0001",
+        "dateCreated": "0001-01-01T00:00:00.00Z",
+        "datePublished": "0001-01-01T00:00:00.00Z",
+        "dateModified": "0001-01-01T00:00:00.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "Easler",
@@ -153,7 +153,7 @@
 
     ,
         "url" : "\/posts\/hugo\/",
-        "wordCount" : "248",
+        "wordCount" : "249",
         "genre" : [ ],
         "keywords" : [ ]
     }
@@ -363,12 +363,13 @@
 <p><code>brew install hugo</code></p>
 <h2 id="githubとnetlifyも登録しよう">②GitHubとNetlifyも登録しよう</h2>
 <p>これらのインストールはhugoよりも簡単です</p>
-<p>それぞれのホームページにアクセスして自分のメールアドレスとパスワードを設定して登録まで終わらせましょう。</p>
+<p>はじめにそれぞれのホームページにアクセスして自分のメールアドレスとパスワードを設定して登録まで終わらせましょう。</p>
 <p>github:(<a href="https://github.com/">https://github.com/</a>)<br>
 Netlify:(<a href="https://www.netlify.com/">https://www.netlify.com/</a>)</p>
 <p>※近頃は日本語訳も増えてきた印象ですが、両サイトとも基本的に殆どが英語なのでよく分からない内容はサイト翻訳を積極的に使うことを推奨します。</p>
 <p>個人的なおすすめはdeepLという翻訳サービスです。翻訳精度が高水準なため重宝しています。<br>
 deepL:(<a href="https://www.deepl.com/ja/translator">https://www.deepl.com/ja/translator</a>)</p>
+<p>最終的にGithubにpushしたブログのレポジトリをNetlifyに提携させます</p>
 <p>インストールできたら早速起動してみましょう(連携については後述)</p>
 <h2 id="hugoでの流れ">③hugoでの流れ</h2>
 <p>①hugoのフォルダ(リポジトリ)を作る→②ブログページのテーマを決める→③githubと連携させる</p>
@@ -384,7 +385,7 @@ deepL:(<a href="https://www.deepl.com/ja/translator">https://www.deepl.com/ja/tr
 <p>なので、ここではページレイアウトつまりテーマを決めてしまいましょう。</p>
 <p>いざテーマを探すといってもどうすればいいか迷ってしまうものですが、<br>
 とりあえず<code>hugo themes</code>と検索してしまいましょう。テーマがたくさん補完されたページがヒットします。</p>
-<p>実際のページはこちら:(<a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a>)</p>
+<p>実際に私が参照したページはこちら:(<a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a>)</p>
 <p>気に入ったテーマが見つかったら、あとはそのページにテーマの導入方法が描かれてるのでそれを実行しましょう。<br>
 以下では私がテーマを導入した手順を一例として挙げています。</p>
 <p><code>(1)cd themes   …③-1で作ったフォルダの中にthemesというフォルダがあるのでターミナルでcdコマンドを使ってその階層まで移動します</code><br>
@@ -397,7 +398,7 @@ deepL:(<a href="https://www.deepl.com/ja/translator">https://www.deepl.com/ja/tr
 <strong>※使いたいテーマによっては削除しないこともあります</strong></p>
 <h2 id="-3-githubと連携しよう">③-3 GitHubと連携しよう</h2>
 <p>ちゃんと連携出来るかのチェックも兼ねてここからGitHubの連携を行います。
-<em><strong>ここでは前提としてhugoの全フォルダではなく、hugoにて生成するpublicフォルダだけ連携させる</strong></em></p>
+<em><strong>ここでは前提としてhugoの全フォルダではなく、hugoにて生成するpublicフォルダだけ連携させます</strong></em></p>
 <p>【補足】GitHubの準備</p>
 <blockquote>
 <p>GitHubのマイページの左上にある<code>New</code>をクリック<br>
