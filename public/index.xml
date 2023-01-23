@@ -52,7 +52,7 @@
     </item>
     
     <item>
-      <title>HTTPのメソッド(Node.js4)</title>
+      <title>HTTPのメソッドについて</title>
       <link>/posts/node.js-4/</link>
       <pubDate>Fri, 28 Oct 2022 20:36:16 +0900</pubDate>
       
@@ -63,7 +63,7 @@
     </item>
     
     <item>
-      <title>Dockerについて</title>
+      <title>Dockerとは何なのか</title>
       <link>/posts/docker/</link>
       <pubDate>Sun, 09 Oct 2022 10:46:32 +0900</pubDate>
       
@@ -74,7 +74,7 @@
     </item>
     
     <item>
-      <title>DNS</title>
+      <title>DNSについて調べてみる</title>
       <link>/posts/dns/</link>
       <pubDate>Sun, 09 Oct 2022 10:43:05 +0900</pubDate>
       
@@ -85,7 +85,7 @@
     </item>
     
     <item>
-      <title>サーバーとクライアント</title>
+      <title>サーバーとクライアントとは</title>
       <link>/posts/server/</link>
       <pubDate>Sun, 09 Oct 2022 10:40:34 +0900</pubDate>
       
@@ -96,7 +96,7 @@
     </item>
     
     <item>
-      <title>HTTP通信</title>
+      <title>HTTP通信とは何なのか</title>
       <link>/posts/http/</link>
       <pubDate>Sun, 09 Oct 2022 10:37:31 +0900</pubDate>
       
@@ -107,7 +107,7 @@
     </item>
     
     <item>
-      <title>通信とネットワーク</title>
+      <title>通信とネットワークについてのいろいろ</title>
       <link>/posts/net/</link>
       <pubDate>Sun, 09 Oct 2022 10:34:26 +0900</pubDate>
       
