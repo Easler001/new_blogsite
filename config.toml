@@ -1,0 +1,49 @@
+baseURL = ""
+languageCode = "ja-ja"
+title = "bookmark"
+theme = "anatole"
+# 下のコマンドでhomeで出てくる字数を制御させる
+summarylength = 1
+
+# config.tomlファイルにpublishDir = "docs"の1行を追加するだけ。これだけでhugoコマンドを実行したときにHugo側で自動で publicではなくdocsフォルダを作ってその下にhtmlを生成してくれる
+# publishDir = "docs"
+
+# github.ioの下にさらにysdyt.netというディレクトリ階層をもたせた場合、baseurlの前提が異なるため、hugoは意図通りパスをビルドできなくなります。
+# そこでcanonifyurls = trueとしておくことでbaseurl=に指定したパスを問答無用でbaseurlにしてくれます。
+canonifyurls = true
+
+[params]
+title = "bookmark"
+author = "Easler"
+description = "Call me Easler"
+profilePicture = "images/IMG_0125.png"
+
+copyright = "2022-{{ YEAR }}"
+
+[menu]
+
+  [[menu.main]]
+  name = "Home"
+  identifier = "home"
+  weight = 100
+  url = "/"
+
+  [[menu.main]]
+  name = "About"
+  weight = 300
+  identifier = "about"
+  url = "/about/introduction/"
+
+  [[menu.main]]
+  name = "Contact"
+  weight = 400
+  identifier = "contact"
+  url = "https://docs.google.com/forms/d/e/1FAIpQLSdWPQmZsnqGKhtxilORmaadUfp6B-681NNOToorOBlsO83Yyw/viewform?embedded=true%22"
+
+
+
+disableThemeSwitcher = true # Theme switcher is enabled by default
+
+
+contentratio = 0.5
+

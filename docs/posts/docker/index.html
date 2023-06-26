@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+><head>
+  <title>
+    Easler
+      |
+      Dockerについて
+
+
+    
+
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.86.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta
+    name="description"
+    content="
+      Call me Easler
+
+
+    "
+  />
+  
+  
+  
+  <link
+    rel="stylesheet"
+    href="https://easler001.github.io/new_blog2/css/main.min.c580433fbb275c2c40c362871f45832502b837fa4f6b86f80089b4b4baf9df86.css"
+    integrity="sha256-xYBDP7snXCxAw2KHH0WDJQK4N/pPa4b4AIm0tLr534Y="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="https://easler001.github.io/new_blog2/css/markupHighlight.min.8e4c8f0a940b1596fb4c64d28a00a5ceed671fc303cb65178b4947417da9c674.css"
+    integrity="sha256-jkyPCpQLFZb7TGTSigClzu1nH8MDy2UXi0lHQX2pxnQ="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous"
+  />
+  
+  <link rel="shortcut icon" href="https://easler001.github.io/new_blog2/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://easler001.github.io/new_blog2/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://easler001.github.io/new_blog2/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://easler001.github.io/new_blog2/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://easler001.github.io/new_blog2/posts/docker/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="https://easler001.github.io/new_blog2/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js"
+    integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="https://easler001.github.io/new_blog2/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js"
+      integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus="
+      crossorigin="anonymous"
+    ></script>
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Dockerについて"/>
+<meta name="twitter:description" content="Docker Desktopをインストールし、macOSのコンピューターの中でLinuxを使用できる環境を用意する手順 普段使うOS(このPCならmacOS)と独立してLinux環境を構築する方法 ①仮想環境を用意する方法 ②コンテナ技術を使う方法"/>
+
+
+
+  
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "posts",
+        "name": "Dockerについて",
+        "headline": "Dockerについて",
+        "alternativeHeadline": "",
+        "description": "
+      
+        Docker Desktopをインストールし、macOSのコンピューターの中でLinuxを使用できる環境を用意する手順 普段使うOS(このPCならmacOS)と独立してLinux環境を構築する方法 ①仮想環境を用意する方法 ②コンテナ技術を使う方法
+
+
+      
+
+
+    ",
+        "inLanguage": "ja-ja",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/easler001.github.io\/new_blog2\/posts\/docker\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Easler"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Easler"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Easler"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Easler"
+        },
+        "copyrightYear" : "2021",
+        "dateCreated": "2021-10-09T10:46:32.00Z",
+        "datePublished": "2021-10-09T10:46:32.00Z",
+        "dateModified": "2021-10-09T10:46:32.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Easler",
+            "url": "https://easler001.github.io/new_blog2/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/easler001.github.io\/new_blog2\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+      ]
+
+    ,
+        "url" : "https:\/\/easler001.github.io\/new_blog2\/posts\/docker\/",
+        "wordCount" : "50",
+        "genre" : [ ],
+        "keywords" : [ ]
+    }
+  </script>
+
+
+
+</head>
+<body>
+    <header><div
+  class="page-top 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </a>
+  <nav>
+    <ul class="nav__list" id="navMenu">
+      <div class="nav__links">
+        
+        
+          
+          <li>
+            <a
+              
+              href="https://easler001.github.io/new_blog2/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="https://easler001.github.io/new_blog2/posts/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="https://easler001.github.io/new_blog2/about/"
+              
+              title=""
+              >About</a
+            >
+          </li>
+
+        
+        
+      </div>
+      <li>
+        
+          <a class="theme-switch" title="Switch Theme">
+            <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+          </a>
+
+        
+      </li>
+    </ul>
+  </nav>
+</div>
+</header>
+    <div class="wrapper">
+      <aside><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://easler001.github.io/new_blog2/images/p.jpg" alt="profile picture" />
+        <h3 title=""><a href="https://easler001.github.io/new_blog2/">30Week</a></h3>
+        <div class="description">
+          <p>Call me Easler</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+      
+    </ul>
+  </div><footer class="footer footer--sidebar">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          2020-2021
+
+        
+      </li>
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="https://easler001.github.io/new_blog2/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main>
+        <div class="autopagerize_page_element">
+          <div class="content">
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    <div class="post-content">
+      
+      <div class="post-title">
+        <h1>Dockerについて</h1>
+        
+      </div><h1 id="docker-desktopをインストールしmacosのコンピューターの中でlinuxを使用できる環境を用意する手順">Docker Desktopをインストールし、macOSのコンピューターの中でLinuxを使用できる環境を用意する手順</h1>
+<p>普段使うOS(このPCならmacOS)と独立してLinux環境を構築する方法
+①仮想環境を用意する方法
+②コンテナ技術を使う方法</p>
+<p>仮想環境…今使用中のコンピュータ上にもう1個のコンピュータを「仮想的に」作り上げる仕組み
+(Virtual Machine、略してVM)
+ex:VirtualBox(Windows、macOSにLinuxの仮想環境を構築する)
+イメージ…PCの中に仮想マシンがあってそこにLinuxが入っている感じ</p>
+<p>コンテナ技術…OS上にコンテナ(論理的区切り)を作り、それぞれを独立したコンピューターのように使う。
+これを使うと、1つのコンピューターの中に複数の独立した環境を用意できる→アプリケーション毎で環境を独立できるので設定の違いで干渉されないので管理が簡単。
+ex:Docker(Linux上でコンテナを実現するためのソフトウェア)</p>
+<p>☆DockerはLinuxカーネルを共用する☆</p>
+<p>上で書いてるようにDockerはLinux上で動くソフトウェア。
+各コンテナはコンテナ技術の説明の通り独立したコンピュータのように扱えるが、
+実際は各コンテナはDockerがインストールされてる元のLinuxのカーネルを共用してる。</p>
+<p>補足:カーネルは最も中心的な機能を受け持つ部分であり、ハードウェアと直接やりとり等行う。
+ここでは、ハードウェアの違いを吸収して、プログラムがどんなハードウェア上でも同じように動作する役割がある。</p>
+<p>簡単に言うと各Dockerコンテナは独立したLinuxコンピュータだとみなせる。(=Linuxコミコミで入ってる感じ)</p>
+<p>※仮想化ソフトとBoot Campの違いは？
+以下参照　https://book.mynavi.jp/macfan/detail_summary/id=86827
+仮想化ソフト…ソフトでコンピュータを再現した「仮想マシン」を作成、動作させる。これにOSをインストールすることでそのソフトを使える。(仮想マシン上でWindows)</p>
+<p>Boot Camp…内蔵ストレージ内にWindowsパーティションを作り第2の起動ボリュームにする。ユーザーはMacかWindowsのどっちか選んでMacを起動し直す。(Windows領域を物理的に確保)</p>
+<p>つまり、macOSとWindowsを同時に使用するか別々に使うかの違い。</p>
+<p>☆Dockerを使おう</p>
+<p>ここまでLinux環境で使うと書いてきたが、実際のところWindowsやmacOSでDockerの環境を使用することも出来る。
+方法は以下の通り。</p>
+<p>①仮想環境上のLinux上に手動でDockerをインストールする</p>
+<p>上記で説明したようなVirtualBpx等の仮想環境を構築するソフトウェアを用いてLinux環境を用意してその上に手動でDockerをインストールする。</p>
+<p>Windows(mac)の中にLinuxカーネル等入ったVirtualBoxを用意(組み込む)し、その場所でDocker自体をインストールする。</p>
+<p>②Docker Desktopを使用する</p>
+<p>Docker DesktopはWindows、mac向けのソフトウェア。
+これには上述していたLinuxカーネルの仮想環境を構築する機能が内包されている。
+つまり、Linuxの仮想環境もコンテナも全てコミコミで入っていてそれがWindowsやmacで使えると言う感じ。</p>
+<p>さらに言えば、仮想環境構築用のソフトを使う手間が省ける!</p>
+<p>②についての方法
+PCのプロセッサの確認。(macbook以外ならほぼ100%Intelcoreのはず。macbookは最新型ならappleシリコンになってるので各自確認。ちなみにこのPCはIntelcore i9)</p>
+<p>(念の為確認方法　macなら左上appleマークからこのmacについてで確認可能。windowsはスタート→設定→システム→バージョン情報)</p>
+<p>確認できたらDocker Desktopのページにアクセスし前述にて確認したプロセッサを選択し、ダウンロード開始。
+(<a href="https://www.docker.com/products/docker-desktop">https://www.docker.com/products/docker-desktop</a>)</p>
+<p>ダウンロード終了後</p>
+</div>
+    <div class="post-footer">
+      <div class="info">
+        
+
+        
+      </div>
+    </div>
+
+    
+  </div>
+
+
+          </div>
+        </div>
+      </main>
+    </div><footer class="footer footer--base">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          2020-2021
+
+        
+      </li>
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="https://easler001.github.io/new_blog2/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script></body>
+</html>
