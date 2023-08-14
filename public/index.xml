@@ -85,39 +85,6 @@
     </item>
     
     <item>
-      <title>HTTP通信とは何なのか</title>
-      <link>/posts/http/</link>
-      <pubDate>Sun, 09 Oct 2022 10:37:31 +0900</pubDate>
-      
-      <guid>/posts/http/</guid>
-      
-        <description>HTTP通信とは HTTPと呼ばれる約束事に従って行われる通信のこと ≒インターネットっぽい通信のこと</description>
-      
-    </item>
-    
-    <item>
-      <title>通信とネットワークについてのいろいろ</title>
-      <link>/posts/net/</link>
-      <pubDate>Sun, 09 Oct 2022 10:34:26 +0900</pubDate>
-      
-      <guid>/posts/net/</guid>
-      
-        <description>ネットワークとは ネットワークとはパソコン、スマホなどの通信端末や各種サーバーの間を 有線や無線で繋ぎ、情報の伝送を行うための通信設備のこと。  通信設備 通信設備は、通信回線と通信機器から構成される。 ex):通信回線…無線LAN、有線LAN、大手通信キャリア回線、光ファイバー回線、電話回線 通信機器…ルーター、ハブ、ファイアウォール(企業などの内部ネットワークをインターネットを通して侵入してくる不正なアクセスから守るための“防火壁”) 無線アンテナ、Wi-Fiルーター、LANケーブル、配線部材etc…  ネットワークの用途 主な用途としては、電子メール、Webサイトの閲覧、ネットショッピングや電子決済、SNS、ファイル共有、動画配信やネット生放送、オンラインゲーム、IP電話、各種クラウドサービス利用etc… 利用されている業界だと、官公庁、教育、医療機関等場面はさまざま。  ネットワークプロトコル ネットワークで通信を行うにはプロトコル(通信に関する規約を定めたもの)が必要。(代表例:TCP/IP) ☆通信プロトコル(約束事)ex.</description>
-      
-    </item>
-    
-    <item>
-      <title>LinuxというOSについて</title>
-      <link>/posts/linux/</link>
-      <pubDate>Sun, 02 Oct 2022 17:53:01 +0900</pubDate>
-      
-      <guid>/posts/linux/</guid>
-      
-        <description>(1)ソフトウェアについて ソフトウェアは基本ソフトウェアと応用ソフトウェアの２種類がある。 ex.</description>
-      
-    </item>
-    
-    <item>
       <title>Contact</title>
       <link>/contact/contact/</link>
       <pubDate>Sat, 30 Oct 2021 09:13:46 +0900</pubDate>
