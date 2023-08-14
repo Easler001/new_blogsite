@@ -153,7 +153,7 @@
 
     ,
         "url" : "\/posts\/hugo\/",
-        "wordCount" : "249",
+        "wordCount" : "259",
         "genre" : [ ],
         "keywords" : [ ]
     }
@@ -312,9 +312,9 @@
 <li><a href="#-2%E3%83%86%E3%83%BC%E3%83%9E%E3%82%92%E6%B1%BA%E3%82%81%E3%82%88%E3%81%86">③-2テーマを決めよう</a></li>
 <li><a href="#-3-github%E3%81%A8%E9%80%A3%E6%90%BA%E3%81%97%E3%82%88%E3%81%86">③-3 GitHubと連携しよう</a></li>
 <li><a href="#netrify%E3%81%A8%E9%80%A3%E6%90%BA%E3%81%97%E3%81%A6%E5%85%AC%E9%96%8B%E3%81%97%E3%82%88%E3%81%86">④Netrifyと連携して公開しよう!</a></li>
-<li><a href="#%E6%89%8B%E9%A0%86%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81">手順のまとめ</a></li>
 </ul>
 </li>
+<li><a href="#%E6%89%8B%E9%A0%86%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81">手順のまとめ</a></li>
 </ul>
 <h1 id="各項目の補足">各項目の補足</h1>
 <h2 id="hugo">Hugo</h2>
@@ -345,6 +345,7 @@
 <p><em><strong>hugoは自分のパソコンの中で爆速でサイトを作れるスペースで、githubはサイト作った時のコード諸々を保管しておく場所。</strong></em></p>
 <p><em><strong>でもhugoだけだと自分のパソコンの中だけでしかそのサイトは見れないからサイトをドメインとかをゲットして外部の人たちにも見てもらおうっていう場所がNetlifyという感じ。</strong></em></p>
 <p><em><strong>自分自身勘違いしそうだったのは、サーバーとかではなくサイトのジェネレーター(生成場)、つまり静的サイトの生産工場ということ。</strong></em></p>
+<p>一言で言うと、サイトの表示がすごく早いです。阿部寛のホームページに引けを取らないくらいに爆速です。</p>
 <p>ここからはhugoを使ってブログと記事の作成からgithubとNetlifyの連携、サイト公開までの一連の流れをまとめてみます。</p>
 <h1 id="ブログを作ろう">ブログを作ろう</h1>
 <h2 id="hugoを始めよう">①hugoを始めよう</h2>
@@ -365,28 +366,46 @@ deepL:(<a href="https://www.deepl.com/ja/translator">https://www.deepl.com/ja/tr
 <h2 id="hugoでの流れ">③hugoでの流れ</h2>
 <p>①hugoのフォルダ(リポジトリ)を作る→②ブログページのテーマを決める→③githubと連携させる</p>
 <h2 id="-1フォルダ作成">③-1フォルダ作成</h2>
-<p>自分のデスクトップ上にフォルダ(リポジトリ)を作ります</p>
-<p>今回はターミナル(コマンド)で作ります。(画面上二本指で同時押しでも作成可)</p>
+<p>自分のデスクトップ上に「my_website」と言う名前のフォルダ(リポジトリ)を作ります</p>
 <p>ターミナルで次のように入力します↓</p>
-<p><code>cd desktop  …デスクトップに移動。</code><br>
-<code>cd hugo new site 【作りたいブログタイトル】　…デスクトップ上にディレクトリが作成される。</code><br>
-※コマンド補足cd 指定の場所へ移動する。　前の場所に戻りたい時は　cd ..</p>
+<p>cd desktop  …デスクトップに移動。<br>
+cd hugo new site 【作りたいブログタイトル】　…デスクトップ上にディレクトリが作成される。<br>
+ここでは、hugo new site my_website と入力しました。</p>
 <h2 id="-2テーマを決めよう">③-2テーマを決めよう</h2>
-<p>フォルダを作っただけでは、もちろん画面は真っ白のまま。実際に画面を表示するためのページを決めないといけません。</p>
-<p>なので、ここではページレイアウトつまりテーマを決めてしまいましょう。</p>
+<p>フォルダを作っただけでは、デフォルトの状態のため、画面は真っ白のまま。<br>
+実際に画面を表示するためのページのテーマを決めて、それを表示させないといけません。</p>
+<p>なのでテーマを決めます!</p>
 <p>いざテーマを探すといってもどうすればいいか迷ってしまうものですが、<br>
-とりあえず<code>hugo themes</code>と検索してしまいましょう。テーマがたくさん補完されたページがヒットします。</p>
+とりあえずgoogleで「hugo themes」と検索してしまいましょう。テーマがたくさん補完されたページがヒットします。</p>
 <p>実際に私が参照したページはこちら:(<a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a>)</p>
 <p>気に入ったテーマが見つかったら、あとはそのページにテーマの導入方法が描かれてるのでそれを実行しましょう。<br>
-以下では私がテーマを導入した手順を一例として挙げています。</p>
-<p><code>(1)cd themes   …③-1で作ったフォルダの中にthemesというフォルダがあるのでターミナルでcdコマンドを使ってその階層まで移動します</code><br>
-<strong>【補足】そのフォルダの中身を確認したい時は lsと入力すると、その中にあるモノを表示してくれる</strong></p>
-<p><code>(2)git clone https://github.com/huyb1991/hugo-lamp</code><br>
-<strong>このブログのテーマがこれで取り込まれました</strong><br>
-<strong>【補足】git clone…リポジトリ(ファイル等何らかの「保管場所」)のクローンを作る。</strong></p>
-<p><code>(3)rm -rf hugo-lamp/.git</code><br>
-<strong>使わないデータは削除!</strong><br>
-<strong>※使いたいテーマによっては削除しないこともあります</strong></p>
+今回私は、Anatoleというテーマで作成したので、それを元に下に記していきます！</p>
+<p>git init …ディレクトリの中身がgitで管理されます。</p>
+<p>git submodule add <a href="https://github.com/lxndrblz/anatole">https://github.com/lxndrblz/anatole</a>　…git submoduleで、外部のgitリポジトリを自分のgitリポジトリとしてとり込みます。<br>
+ここでは、外部サイト(anatole)を取り込んでいます。</p>
+<p>これでテーマが完成しました。<br>
+実際に表示させるには、comfig.tomlファイルを少々弄ってあげる必要があります。<br>
+私はVSCodeから以下のように入力しました。</p>
+<p>baseURL = &quot;&quot;<br>
+languageCode = &ldquo;ja-ja&rdquo;<br>
+title = &ldquo;bookmark&quot;←実際のサイトタイトル<br>
+theme = &ldquo;anatole&quot;←テーマ名。入力することでテーマを読み込むことができます！</p>
+<p>試しに一つ投稿してみましょう。<br>
+postsフォルダの中に最初の投稿とわかるようなファイルを作成します。<br>
+コマンドは以下のとおりで行います。</p>
+<p>hugo new posts/my-first-post.md</p>
+<p>hugo newで新しいコンテンツを作成します。<br>
+postsフォルダの中にmy-first-post.mdと言うmdファイルを作成しました。<br>
+これは一例なので、ファイル名はfirst.mdなど内容が分かるような名称であればなんでもいいと思います。</p>
+<p>ここまでできたらサイトの&rsquo;ガワ&rsquo;ができているはずなので、試しに表示させてみます。<br>
+ターミナルで</p>
+<p>hugo server -D<br>
+と入力します。</p>
+<p>localhost:1313とgoogle等で入力すれば、自分のローカルデスクトップ上で表示される画面を見ることができます。<br>
+(つまり、外部公開される前の状態です)<br>
+ここで画面がちゃんと表示できていれば成功です！<br>
+※control+Cで終了します。
+ここまで出来れば、次はGithubとの連携に移ります。</p>
 <h2 id="-3-githubと連携しよう">③-3 GitHubと連携しよう</h2>
 <p>ちゃんと連携出来るかのチェックも兼ねてここからGitHubの連携を行います。
 <em><strong>ここでは前提としてhugoの全フォルダではなく、hugoにて生成するpublicフォルダだけ連携させます</strong></em></p>
@@ -402,9 +421,6 @@ Create a new repositoryのページでRepository nameの設定。<br>
 <blockquote>
 <p><strong>hugo</strong><br>
 このコマンドにてpublicフォルダが生成される。このフォルダをgithubに連携させるのが今回の最初の目標</p>
-</blockquote>
-<blockquote>
-<p><strong>git init  ここでgit用のレポジトリ(フォルダ)を作ってGitHubとつなげる下準備をする</strong></p>
 </blockquote>
 <blockquote>
 <p><strong>git add public  これで更新されたデータを追加させる</strong><br>
@@ -434,29 +450,43 @@ ex:初めてのコミットの時は git commit -m &lsquo;first commit&rsquo; �
 </blockquote>
 <blockquote>
 <p>git push origin master (またはgit push -u origin main)<br>
-これで上で書いたcommitの内容を更新して完了!<br>
-エラーが起こらなければGitHubのパスワード入力が求められるので間違えないように入力しよう。</p>
+これで上で書いたcommitの内容を更新して完了!</p>
 </blockquote>
+<p>Githubにて初めてそのレポジトリでpushする場合は、ページに入力するコードの手順が書かれているので、それも併せて参照してみてください。</p>
+<p>なお、内容を更新するたびに再度pushする手順(入力するコマンド)は<br>
+①hugo…publicフォルダを最新の状態に更新する<br>
+②git add public<br>
+③git commit &lsquo;コミット名&rsquo;<br>
+④git push -u origin main<br>
+という手順になります。</p>
 <h2 id="netrifyと連携して公開しよう">④Netrifyと連携して公開しよう!</h2>
 <p>最後にNetrifyと連携させて実際にブログを公開します！　　</p>
 <blockquote>
-<p>Netlifyのマイページにアクセスして<code>New site from Git</code>をクリック<br>
+<p>NetlifyのマイページにアクセスしてAdd new siteをクリックし、Import an existing projectを選択します。<br>
 これで提携させるファイルを選択します<br>
-選択は左下のGitHubの🐱マークをクリック</p>
+この時、githubの認証が求められますので、パスワードをお忘れなく！</p>
 </blockquote>
-<blockquote>
-<p>GitHubを選択したらアカウント確認画面が出てくるのでログインしましょう<br>
-そこから今回のGitHubのファイルを選択して、Deploy siteを押します</p>
-</blockquote>
+<p>そこから今回のGitHubのファイルを選択して、デプロイを行いますが、1つ追加作業を行います。<br>
+Add environment variablesと言うボタンが下の方にあるので、それをクリックします。<br>
+これは「環境変数」の設定になります。<br>
+New variableをクリックし、<br>
+KeyにHUGO_VERSION<br>
+Valueに0.86.0と入力します。<br>
+これをする理由は、ローカル上とnetlify上でのhugoのバージョンを統一するためです。<br>
+私もこの情報を入力していなかったために、デプロイしているのに、サイトページがエラーで表示されないという悲劇に見舞われました。</p>
+<p>環境変数の入力も終わったら、
+&lsquo;Deploy アプリ名&rsquo;のボタンをクリックすればサイトの生成、デプロイが完了します！</p>
 <p>以上がサイトが生成されるまでの流れです。<br>
-サイト用のアドレスが設定されているのでクリックしてサイトが正しく表示されたらクリア!!</p>
-<h2 id="手順のまとめ">手順のまとめ</h2>
-<blockquote>
-<p>最初:hugo → git init → git add public → git commit -m &lsquo;コメント&rsquo; → git branch -M main → git remote add origin <a href="https://github.com/">https://github.com/</a>ユーザー名/GitHubのファイル名.git → git push origin master (またはgit push -u origin main)</p>
-</blockquote>
-<blockquote>
-<p>2回目以降(記事更新時):hugo → git add public → git commit -m &lsquo;コメント&rsquo; → git push origin master (またはgit push -u origin main)</p>
-</blockquote>
+デプロイ完了後、サイト用のアドレスが設定されているのでクリックしてサイトが正しく表示されたらクリアです!!<br>
+以降はGithubにて更新のたびにpushするとその内容はnetlify側にも反映されてサイトも更新されるようになります！</p>
+<h1 id="手順のまとめ">手順のまとめ</h1>
+<p>hugoの導入→サイト用のフォルダの作成→好きなテーマを決めて導入する→Githubに提携してpushする→さらにnetlifyにも提携させてデプロイする！！</p>
+<p>2回目以降(記事更新時):hugo コマンドでpublicフォルダの更新→Githubにて最新のコミットをpush→netlifyにも反映される→サイトが更新される！</p>
+<p>hugoのサイトは導入の仕方が少しだけテクニカルではありますが、慣れていくと早いし、使い勝手がいいので使うのに損はないと思います。<br>
+このサイトは作成して1年以上立つのですが、最近またhugoでサイト作成しようとした時に結構忘れていたことも多くて、思いの外苦労しました。<br>
+再度hugoのサイトを作る時は、ネット検索のみならず、chatGPTの力を借りて無事にデプロイまで漕ぎ着けました。<br>
+以上の経緯も踏まえて今回は、本サイト作成時から時間経過により変わったところもできる限り修正しました。<br>
+サイト作成の参考になれば幸いです。</p>
 </div>
     <div class="post-footer">
       <div class="info">
